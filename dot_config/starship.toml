@@ -1,0 +1,64 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+#========================
+# Prompt
+#========================
+add_newline = false
+format = """
+[⚙︎](bold) $gcloud$env_var
+$time$git_branch$git_status$git_state
+$directory$cmd_duration
+$character
+"""
+
+continuation_prompt = '❯ '
+
+[character] # The name of the module we are configuring is 'character'
+success_symbol = "[❯](bold green)"
+error_symbol="[❯](bold red)"
+
+[time]
+disabled = false
+format = '[\[ $time \]]($style) '
+time_format = '%T'
+utc_time_offset = '9'
+time_range = '10:00:00-14:00:00'
+
+[cmd_duration]
+min_time = 500
+format = 'took [$duration](bold yellow)'
+
+[git_branch]
+symbol = "  "
+style='bold purple'
+format = '$symbol$branch(:$remote_branch)'
+truncation_length = 6
+truncation_symbol = ''
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = '🔖 '
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+
+[git_status]
+style = "green bold"
+modified = "*"
+
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style) '
+style = "cyan bold"
+truncation_length = 3
+truncate_to_repo = false
+truncation_symbol = ".../"
+[gcloud]
+style = 'bold blue'
+format = '[$symbol( $project)]($style) '
+symbol = '️☁️ '
+
+[env_var.ENVIRONMENT]
+variable = 'ENVIRONMENT'
+format = "[$env_value](fg:white bg:blue bold)"
+default=""
+
