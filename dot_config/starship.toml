@@ -5,9 +5,7 @@
 #========================
 add_newline = false
 format = """
-[⚙︎](bold) $gcloud$env_var
-$time$git_branch$git_status$git_state
-$directory$cmd_duration
+$directory$cmd_duration$time$git_branch$git_status$git_state [⚙︎](bold) $gcloud$env_var
 $character
 """
 
