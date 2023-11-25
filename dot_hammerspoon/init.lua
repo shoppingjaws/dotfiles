@@ -29,7 +29,5 @@ remapWithMod('ctrl', 'l', 'right')
 remapWithMod('ctrl', 's', 'delete')
 remapWithMod('ctrl', 'd', 'forwarddelete')
 remapWithMod('ctrl', 'f', 'return')
-remapWithMod('ctrl', 'e', 'end')
-remapWithMod('ctrl', 'a', 'home')
-remap({'ctrl'}, 'w', 'escape')
+hs.hotkey.bind({'ctrl'}, 'w', pressFn('escape'), nil, pressFn('escape'))
 
