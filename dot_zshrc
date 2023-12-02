@@ -21,8 +21,8 @@ if ! zplug check --verbose; then
 fi
 # Zsh History
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 # Then, source plugins and add commands to $PATH
 zplug load
 
@@ -65,12 +65,18 @@ alias dc="docker compose"
 #==================
 
 # Golang
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
+export GOENV_ROOT=$HOME/.goenv
+export PATH=$GOENV_ROOT/bin:$PATH
+export PATH=$HOME/.goenv/bin:$PATH
 eval "$(goenv init -)"
+
+# Ruby
+eval "$(rbenv init - zsh)"
+
+# brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 #==================
 # Fly to the moon
 #==================
 eval "$(starship init zsh)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
