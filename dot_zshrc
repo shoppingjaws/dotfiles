@@ -1,17 +1,14 @@
 #==================
 # Zsh
 #==================
-# zplug
 source ~/.zplug/init.zsh
-zplug "mafredri/zsh-async"
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-syntax-highlighting"
+# 過去に入力したコマンドの履歴が灰色のサジェストで出る
 zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
-zplug "rupa/z", use:"*.sh"
-# Theme
-# zplug "sindresorhus/pure"
+# 256色表示にする
+zplug "chrissicool/zsh-256color"
+# シンタックスハイライト
+zplug "zsh-users/zsh-syntax-highlighting"
+
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
@@ -19,51 +16,64 @@ if ! zplug check --verbose; then
     echo; zplug install
   fi
 fi
-# Zsh History
-HISTFILE=$HOME/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
 # Then, source plugins and add commands to $PATH
 zplug load
 
-# save dir stack config
-setopt auto_pushd
-setopt pushd_ignore_dups
+# Zsh History ======
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=1000000
+# 履歴を共有
+set -o SHARE_HISTORY
+set -o HIST_REDUCE_BLANKS
+set -o HIST_FIND_NO_DUPS
+set -o EXTENDED_HISTORY
+# 重複した履歴を無視
+set -o HIST_IGNORE_DUPS
+set -o HIST_IGNORE_ALL_DUPS
+function chpwd() { ls }
+DIRSTACKSIZE=30
+# インクリメンタルサーチ
+function select-history() {
+  BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
+  CURSOR=$#BUFFER
+}
+zle -N select-history
+bindkey '^r' select-history
 
-setopt no_flow_control
+# Zsh Directory Jump =====
+set -o auto_pushd
+set -o pushd_ignore_dups
+set -o auto_cd
 
-setopt auto_param_keys
-
-setopt notify
-setopt print_eight_bit
-setopt print_exit_value
-
+#==================
+# Bindings
+#==================
 # emacs key bind
 bindkey -e
-
-#==================
-# Path
-#==================
-bindkey ";9D" forward-word
 bindkey "^[^[[D" backward-word
 bindkey "^[^[[C" forward-word
-#==================
-# Path
-#==================
-export EDITOR="code --wait"
+
 #==================
 # Alias
 #==================
+alias cza="chezmoi apply;zsh"
 alias p8="ping 8.8.8.8"
 alias tf="terraform"
 alias gc="git checkout"
 alias gcb="git checkout -b"
 alias kb="kubectl"
 alias dc="docker compose"
+alias lg="lazygit"
 
 #==================
 # Extra configuration
 #==================
+
+# z
+. `/opt/homebrew/bin/brew --prefix`/etc/profile.d/z.sh
+
+export EDITOR="code --wait"
 
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -77,7 +87,11 @@ eval "$(goenv init -)"
 # Ruby
 eval "$(rbenv init - zsh)"
 
+# Fig
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
 #==================
 # Fly to the moon
 #==================
 eval "$(starship init zsh)"
+
