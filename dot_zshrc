@@ -56,13 +56,17 @@ export EDITOR="code --wait"
 #==================
 alias p8="ping 8.8.8.8"
 alias tf="terraform"
+alias gc="git checkout"
+alias gcb="git checkout -b"
 alias kb="kubectl"
-alias zshe="code ~/.zshrc"
 alias dc="docker compose"
 
 #==================
 # Extra configuration
 #==================
+
+# brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Golang
 export GOENV_ROOT=$HOME/.goenv
@@ -72,9 +76,6 @@ eval "$(goenv init -)"
 
 # Ruby
 eval "$(rbenv init - zsh)"
-
-# brew
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 #==================
 # Fly to the moon
