@@ -73,7 +73,7 @@ alias lg="lazygit"
 # z
 . `/opt/homebrew/bin/brew --prefix`/etc/profile.d/z.sh
 
-export EDITOR="code --wait"
+export EDITOR="code"
 
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
