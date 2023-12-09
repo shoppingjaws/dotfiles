@@ -24,9 +24,11 @@ end
 
 local function changeImeOnWinSwitch(appName, eventType)
   if (eventType == hs.application.watcher.activated) then
+    print(appName)
+    print(hs.keycodes.currentMethod())
     if (appName == "iTerm2") then
+      hs.keycodes.setMethod("Alphanumeric (Google)")
         -- 英語Keyboardに切り替える
-        hs.keycodes.currentSourceID("com.apple.keylayout.US")
     end
   end
 end
