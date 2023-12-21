@@ -63,8 +63,13 @@ alias tf="terraform"
 alias gc="git checkout"
 alias gcb="git checkout -b"
 alias kb="kubectl"
+alias kbe="kubectl exec"
 alias dc="docker compose"
 alias lg="lazygit"
+alias ls="exa -alhg"
+alias cat="bat --style=plain"
+alias tree="exa -T"
+alias dps="docker ps"
 
 #==================
 # Extra configuration
@@ -86,6 +91,9 @@ eval "$(goenv init -)"
 
 # Ruby
 eval "$(rbenv init - zsh)"
+
+# Node
+eval "$(nodenv init -)"
 
 # Fig
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
