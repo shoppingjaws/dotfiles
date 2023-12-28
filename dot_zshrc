@@ -95,6 +95,9 @@ eval "$(rbenv init - zsh)"
 # Node
 eval "$(nodenv init -)"
 
+# Terraform
+eval "$(tfenv init -)"
+
 # Fig
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
