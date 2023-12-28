@@ -5,7 +5,7 @@
 #========================
 add_newline = false
 format = """
-$directory$cmd_duration$time$git_branch$git_status$git_state [⚙︎](bold) $gcloud$env_var
+$directory$cmd_duration$time$git_branch$git_status$git_state [⚙︎](bold) $aws$gcloud$env_var
 $character
 """
 
@@ -50,10 +50,16 @@ style = "cyan bold"
 truncation_length = 3
 truncate_to_repo = false
 truncation_symbol = ".../"
+
 [gcloud]
 style = 'bold blue'
-format = '[$symbol( $project)]($style) '
+format = 'on [$symbol( $project)]($style) '
 symbol = '️☁️ '
+
+[aws]
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+style = 'bold blue'
+symbol = '🅰 '
 
 [env_var.ENVIRONMENT]
 variable = 'ENVIRONMENT'
