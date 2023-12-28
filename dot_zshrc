@@ -101,6 +101,11 @@ eval "$(tfenv init -)"
 # Fig
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
+# AWS-valut
+export AWS_VAULT_KEYCHAIN_NAME="login"
+export AWS_ASSUME_ROLE_TTL="1h"
+
+
 #==================
 # Fly to the moon
 #==================
