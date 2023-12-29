@@ -70,7 +70,7 @@ alias ls="exa -alhg"
 alias cat="bat --style=plain"
 alias tree="exa -T"
 alias dps="docker ps"
-alias av="aws-vault"
+alias ava="aws-vault"
 #==================
 # Extra configuration
 #==================
