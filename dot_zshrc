@@ -71,6 +71,8 @@ alias cat="bat --style=plain"
 alias tree="exa -T"
 alias dps="docker ps"
 alias ava="aws-vault"
+alias cw='cd $(ghq list -p | fzf)'
+alias gcm="git checkout $(git remote show origin | grep 'HEAD branch' | awk '{print $3}')"
 #==================
 # Extra configuration
 #==================
@@ -83,20 +85,11 @@ export EDITOR="code"
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Golang
-export GOENV_ROOT=$HOME/.goenv
-export PATH=$GOENV_ROOT/bin:$PATH
-export PATH=$HOME/.goenv/bin:$PATH
-eval "$(goenv init -)"
-
-# Ruby
-eval "$(rbenv init - zsh)"
-
-# Node
-eval "$(nodenv init -)"
-
-# Terraform
-eval "$(tfenv init -)"
+# rtx
+alias rtx="mise"
+eval "$(rtx activate zsh)"
+export RTX_DATA_DIR=$HOME/.rtx
+export RTX_CACHE_DIR=$RTX_DATA_DIR/cache
 
 # Fig
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
@@ -107,7 +100,6 @@ export AWS_ASSUME_ROLE_TTL="1h"
 
 
 #==================
-# Fly to the moon
+# Warp config
 #==================
-eval "$(starship init zsh)"
-
+printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh"}}\x9c'

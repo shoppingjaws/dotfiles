@@ -1,10 +1,10 @@
 # install zplug
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 # setup git
-git config --global user.email "25874783+nakamuloud@users.noreply.github.com"
+git config --global user.email "25874783+shoppingjaws@users.noreply.github.com"
 
 sudo softwareupdate --install-rosetta
-brew install ghq gh starship zplug awscli chezmoi lazygit fzf zsh-completions fig exa bat 1password-cli kustomize octant helm tf nodenv
+brew install ghq gh starship zplug awscli chezmoi lazygit fzf zsh-completions fig exa bat 1password-cli kustomize octant helm 
 brew install --cask iterm2 google-japanese-ime google-cloud-sdk slack arc raycast alt-tab aws-valut
 
 # install font
