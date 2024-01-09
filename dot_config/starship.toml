@@ -5,7 +5,7 @@
 #========================
 add_newline = false
 format = """
-$directory$cmd_duration$time$git_branch$git_status$git_state [⚙︎](bold) $aws$gcloud$env_var
+$directory$cmd_duration$time$git_branch$git_status$git_state $kubernetes$aws$gcloud$env_var
 $character
 """
 
@@ -52,15 +52,20 @@ truncate_to_repo = false
 truncation_symbol = ".../"
 
 [gcloud]
+format = '[G:$active ]($style) '
 style = 'bold blue'
-format = 'on [$symbol( $project)]($style) '
-symbol = '️☁️ '
 
 [aws]
-format = 'on [$symbol($profile )(\($region\) )]($style)'
-style = 'bold blue'
-symbol = '🅰 '
+format = '[A:($profile) ]($style)'
+style = 'bold orange'
+expiration_symbol = "X"
 
+[kubernetes]
+format = '[K:$context$namespace](dimmed green) '
+disabled = false
+[[kubernetes.contexts]]
+context_pattern="docker-desktop"
+context_alias="local"
 [env_var.ENVIRONMENT]
 variable = 'ENVIRONMENT'
 format = "[$env_value](fg:white bg:blue bold)"

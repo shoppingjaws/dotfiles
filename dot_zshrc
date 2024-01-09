@@ -77,6 +77,11 @@ alias gcm="git checkout $(git remote show origin | grep 'HEAD branch' | awk '{pr
 # Extra configuration
 #==================
 
+# Credentials
+if [ -f "~/.zshrc_secret" ]; then
+  source "~/.zshrc_secret"
+fi
+
 # z
 . `/opt/homebrew/bin/brew --prefix`/etc/profile.d/z.sh
 
@@ -98,6 +103,8 @@ export RTX_CACHE_DIR=$RTX_DATA_DIR/cache
 export AWS_VAULT_KEYCHAIN_NAME="login"
 export AWS_ASSUME_ROLE_TTL="1h"
 
+# Starship
+eval "$(starship init zsh)"
 
 #==================
 # Warp config
