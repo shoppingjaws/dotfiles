@@ -22,22 +22,6 @@ local function remapWithMod(mod, key, replaced)
   remap({ mod, 'cmd', 'alt', 'shift' }, key, pressFn({ 'cmd', 'alt', 'shift' }, replaced))
 end
 
-local function changeImeOnWinSwitch(appName, eventType)
-  if (eventType == hs.application.watcher.activated) then
-    print(appName)
-    print(hs.keycodes.currentMethod())
-    if (appName == "iTerm2") then
-      hs.keycodes.setMethod("Alphanumeric (Google)")
-        -- 英語Keyboardに切り替える
-    end
-  end
-end
-
--- アプリケーションウォッチャーを作成して開始
-appWatcher = hs.application.watcher.new(changeImeOnWinSwitch)
-appWatcher:start()
-
-
 
 remapWithMod('ctrl', 'j', 'left')
 remapWithMod('ctrl', 'k', 'down')

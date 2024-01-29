@@ -4,23 +4,15 @@
 # Prompt
 #========================
 add_newline = false
-format = """
-$directory$cmd_duration$time$git_branch$git_status$git_state $kubernetes$aws$gcloud$env_var
-$character
-"""
+format = '''$directory$cmd_duration$git_branch$git_status$git_state $kubernetes$aws$gcloud
+'''
+right_format = "$env_var"
 
 continuation_prompt = '❯ '
 
 [character] # The name of the module we are configuring is 'character'
 success_symbol = "[❯](bold green)"
-error_symbol="[❯](bold red)"
-
-[time]
-disabled = false
-format = '[\[ $time \]]($style) '
-time_format = '%T'
-utc_time_offset = '9'
-time_range = '10:00:00-14:00:00'
+error_symbol="[✗](bold red)"
 
 [cmd_duration]
 min_time = 500

@@ -58,6 +58,7 @@ bindkey "^[^[[C" forward-word
 # Alias
 #==================
 alias cza="chezmoi apply;zsh"
+alias cze="chezmoi edit"
 alias p8="ping 8.8.8.8"
 alias tf="terraform"
 alias gc="git checkout"
