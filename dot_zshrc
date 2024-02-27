@@ -67,13 +67,20 @@ alias kb="kubectl"
 alias kbe="kubectl exec"
 alias dc="docker compose"
 alias lg="lazygit"
-alias ls="exa -alhg"
+alias ls="eza -alhg"
 alias cat="bat --style=plain"
-alias tree="exa -T"
+alias tree="eza -T"
 alias dps="docker ps"
 alias ava="aws-vault"
 alias cw='cd $(ghq list -p | fzf)'
+# jump to default branch
 alias gcm="git checkout $(git remote show origin | grep 'HEAD branch' | awk '{print $3}')"
+alias gr="git pull --rebase origin $(git remote show origin | grep 'HEAD branch' | awk '{print $3}')"
+alias gp="git push origin HEAD"
+alias ghb="gh browse"
+alias kz="kustomize"
+# run script with injecting 1password
+# alias opi="op"
 #==================
 # Extra configuration
 #==================
@@ -90,6 +97,11 @@ export EDITOR="code"
 
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# aqua
+export AQUA_GLOBAL_CONFIG=~/.config/aqua.yaml
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
+export PATH="$(aqua root-dir)/bin:$PATH"
 
 # rtx
 alias rtx="mise"
@@ -111,3 +123,12 @@ eval "$(starship init zsh)"
 # Warp config
 #==================
 printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh"}}\x9c'
+
+
+
+#==================
+# Unsynced configuration
+#==================
+if [[ -e "$HOME/.private.zsh" ]] then
+    source $HOME/.private.zsh
+fi
