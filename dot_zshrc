@@ -61,6 +61,7 @@ alias cza="chezmoi apply;zsh"
 alias cze="chezmoi edit"
 alias p8="ping 8.8.8.8"
 alias tf="terraform"
+alias tg="terragrunt"
 alias gc="git checkout"
 alias gcb="git checkout -b"
 alias kb="kubectl"
@@ -75,10 +76,17 @@ alias ava="aws-vault"
 alias cw='cd $(ghq list -p | fzf)'
 # jump to default branch
 alias gcm="git checkout $(git remote show origin | grep 'HEAD branch' | awk '{print $3}')"
-alias gr="git pull --rebase origin $(git remote show origin | grep 'HEAD branch' | awk '{print $3}')"
-alias gp="git push origin HEAD"
+alias gr="git pull --rebase origin `git branch --show-current`"
+alias gp="git push --set-upstream origin `git branch --show-current`"
 alias ghb="gh browse"
+alias ga="git add --all;git status;"
 alias kz="kustomize"
+function chotfix(){ # chot fixする
+  git add --all;
+  git diff --cached --numstat | wc -l;
+  git commit -m "${1-chotfix}";
+  git push --set-upstream origin `git branch --show-current`
+}
 # run script with injecting 1password
 # alias opi="op"
 #==================
@@ -86,8 +94,8 @@ alias kz="kustomize"
 #==================
 
 # Credentials
-if [ -f "~/.zshrc_secret" ]; then
-  source "~/.zshrc_secret"
+if [ -f "$HOME/.zshrc_secret" ]; then
+  source "$HOME/.zshrc_secret"
 fi
 
 # z
@@ -103,11 +111,11 @@ export AQUA_GLOBAL_CONFIG=~/.config/aqua.yaml
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 export PATH="$(aqua root-dir)/bin:$PATH"
 
-# rtx
-alias rtx="mise"
-eval "$(rtx activate zsh)"
+# mise
+eval "$(mise activate zsh)"
 export RTX_DATA_DIR=$HOME/.rtx
 export RTX_CACHE_DIR=$RTX_DATA_DIR/cache
+
 
 # Fig
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

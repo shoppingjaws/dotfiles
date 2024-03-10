@@ -4,7 +4,7 @@
 # Prompt
 #========================
 add_newline = true
-format = '''$directory$cmd_duration$git_branch$git_status$git_state$git_metrics
+format = '''$directory$cmd_duration$git_branch$git_status$git_state$git_metrics$aws
 '''
 right_format = "$env_var"
 
@@ -17,6 +17,15 @@ error_symbol="[✗](bold red)"
 [cmd_duration]
 min_time = 500
 format = 'took [$duration](bold yellow)'
+
+[aws]
+format = 'on [$symbol($profile)(\($region\) )]($style)'
+style = 'bold red'
+symbol = '🅰 '
+
+[aws.region_aliases]
+ap-northeast-1 = 'tk'
+us-east-1 = 'va'
 
 [git_branch]
 symbol = "  "
@@ -47,7 +56,3 @@ style = "cyan bold"
 truncation_length = 3
 truncate_to_repo = false
 truncation_symbol = ".../"
-
-[env_var.MODE]
-default = 'local'
-format = "in [$env_value](white bold dimmed) "
