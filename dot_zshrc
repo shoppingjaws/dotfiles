@@ -75,11 +75,12 @@ alias dps="docker ps"
 alias ava="aws-vault"
 alias cw='cd $(ghq list -p | fzf)'
 # jump to default branch
-alias gcm="git checkout $(git remote show origin | grep 'HEAD branch' | awk '{print $3}')"
-alias gr="git pull --rebase origin `git branch --show-current`"
+alias gcm="git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
+alias gr="git pull --rebase origin $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
 alias gp="git push --set-upstream origin `git branch --show-current`"
 alias ghb="gh browse"
-alias ga="git add --all;git status;"
+alias ghp="gh pr view --web"
+alias ga="git add --all;git diff --staged --stat;"
 alias kz="kustomize"
 function chotfix(){ # chot fixする
   git add --all;
