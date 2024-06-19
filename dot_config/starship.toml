@@ -4,7 +4,7 @@
 # Prompt
 #========================
 add_newline = true
-format = '''$directory$cmd_duration$git_branch$git_status$git_state$git_metrics$aws
+format = '''$directory$cmd_duration$git_branch$git_status$git_state$git_metrics$aws$kubernetes
 '''
 right_format = "$env_var"
 
@@ -26,6 +26,16 @@ symbol = '🅰 '
 [aws.region_aliases]
 ap-northeast-1 = 'tk'
 us-east-1 = 'va'
+
+[kubernetes]
+disabled = false
+format = 'on [⛵ $context ](dimmed green) '
+[[kubernetes.contexts]]
+context_pattern=".*stg.*"
+user_pattern=".*"
+style="blue bold"
+context_alias = "stg"
+
 
 [git_branch]
 symbol = "  "

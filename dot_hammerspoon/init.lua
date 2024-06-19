@@ -22,8 +22,7 @@ local function remapWithMod(mod, key, replaced)
   remap({ mod, 'cmd', 'alt', 'shift' }, key, pressFn({ 'cmd', 'alt', 'shift' }, replaced))
 end
 
-remapWithMod('ctrl', 'e', 'end')
-remapWithMod('ctrl', 'a', 'home')
+
 remapWithMod('ctrl', 'j', 'left')
 remapWithMod('ctrl', 'k', 'down')
 remapWithMod('ctrl', 'i', 'up')
