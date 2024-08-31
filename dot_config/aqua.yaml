@@ -10,3 +10,4 @@ packages:
 - name: kubernetes/kubectl@v1.31.0
 - name: direnv/direnv@v2.34.0
 - name: kubernetes-sigs/kustomize@kustomize/v5.4.3
+- name: homeport/dyff@v1.9.0
