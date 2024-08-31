@@ -161,3 +161,4 @@ printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh"}}\x9c'
 if [[ -e "$HOME/.private.zsh" ]]; then
     source $HOME/.private.zsh
 fi
+
