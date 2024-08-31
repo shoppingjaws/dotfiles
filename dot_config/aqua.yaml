@@ -6,6 +6,5 @@ packages:
 - name: golang/go@go1.22.6
 - name: terraform-linters/tflint@v0.52.0
 - name: twpayne/chezmoi@v2.52.1
-- name: 1password/cli
-  version: "[SET PACKAGE VERSION]"
+- name: 1password/cli@2.30.0
 - name: kubernetes/kubectl@v1.31.0
