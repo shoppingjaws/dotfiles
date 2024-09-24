@@ -3,6 +3,7 @@ registries:
 - type: standard
   ref: v4.219.0 # renovate: depName=aquaproj/aqua-registry
 packages:
+- name: jqlang/jq@jq-1.7.1
 - name: golang/go@go1.22.6
 - name: terraform-linters/tflint@v0.52.0
 - name: twpayne/chezmoi@v2.52.1
