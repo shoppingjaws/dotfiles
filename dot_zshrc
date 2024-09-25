@@ -86,7 +86,8 @@ alias kz="kustomize"
 function chotfix(){ # chot fixする
   git add --all;
   git diff --cached --numstat | wc -l;
-  git commit -m "${1-chotfix}";
+  joined="$@[*]"
+  git commit -m "${joined:=chotfix}";
   git push --set-upstream origin "$(git branch --show-current)"
 }
 alias cf="chotfix"
@@ -140,6 +141,9 @@ eval "$(starship init zsh)"
 
 # rbenv
 eval "$(rbenv init - zsh)"
+
+# direnv
+eval "$(direnv hook zsh)"
 
 # Completion
 source <(kustomize completion zsh)
