@@ -11,7 +11,7 @@ packages:
 - name: sharkdp/bat@v0.24.0
 - name: kubernetes/kubectl@v1.31.0
 - name: junegunn/fzf@v0.55.0
-- name: 1password/cli@v2.30.0
+- name: 1password/cli@v2.30.3
 - name: direnv/direnv@v2.34.0
 - name: kubernetes-sigs/kustomize@kustomize/v5.4.3
 - name: homeport/dyff@v1.9.0
@@ -24,3 +24,5 @@ packages:
 - name: kubernetes/kompose@v1.35.0
 - name: nodejs/node@v22.11.0
 - name: aws/aws-cli@2.23.8
+- name: oven-sh/bun@bun-v1.2.1
+- name: opentofu/opentofu@v1.9.0
