@@ -5,3 +5,4 @@ macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = hidden
 macos-titlebar-style = tabs
 font-family = "0xProto Nerd Font Mono"
+font-family = osaka
