@@ -149,12 +149,6 @@ source <(kustomize completion zsh)
 export NPM_CONFIG_PREFIX=${XDG_DATA_HOME:-$HOME/.local/share}/npm-global
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 
-#==================
-# Warp config
-#==================
-printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh"}}\x9c'
-
-
 
 #==================
 # Unsynced configuration
