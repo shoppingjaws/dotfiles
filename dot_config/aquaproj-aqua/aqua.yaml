@@ -26,3 +26,4 @@ packages:
 - name: aws/aws-cli@2.23.8
 - name: oven-sh/bun@bun-v1.2.1
 - name: opentofu/opentofu@v1.9.0
+- name: telepresenceio/telepresence@v2.21.3

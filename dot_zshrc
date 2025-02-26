@@ -79,23 +79,16 @@ alias cw='cd $(ghq list -p | fzf)'
 alias gcm='git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
 alias gr='git pull --rebase origin $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
 alias gp='git push --set-upstream origin "$(git branch --show-current)"'
-alias ghb="gh browse"
 alias ghp="gh pr view --web"
+alias gac='git add .;git commit -m "$(gh commit)"'
 alias ga="git add --all;git diff --staged --stat;"
 alias kz="kustomize"
-function chotfix(){ # chot fixする
-  git add --all;
-  git diff --cached --numstat | wc -l;
-  joined="$@[*]"
-  git commit -m "${joined:=chotfix}";
-  git push --set-upstream origin "$(git branch --show-current)"
-}
-alias cf="chotfix"
-function gwt() {
-    GIT_CDUP_DIR=$(git rev-parse --show-cdup)
-    git worktree add "${GIT_CDUP_DIR}"git-worktrees/"$1" -b "$1"
-}
 
+# Git Auto Commit Settings
+export OPENAI_URL="https://models.inference.ai.azure.com"
+export OPENAI_MODEL=gpt-4o
+export OPENAI_API_KEY=$(gh auth token)
+export FINE_TUNE_PARAMS='{"temperature": 0.7}' 
 
 
 # run script with injecting 1password
