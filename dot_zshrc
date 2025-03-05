@@ -85,15 +85,12 @@ alias ga="git add --all;git diff --staged --stat;"
 alias kz="kustomize"
 
 # Git Auto Commit Settings
-export OPENAI_URL="https://models.inference.ai.azure.com"
-export OPENAI_MODEL=gpt-4o
-export OPENAI_API_KEY=$(gh auth token)
 export FINE_TUNE_PARAMS='{"temperature": 0.7}'
 export PROMPT_OVERRIDE="与えられたコード変更を調査・説明し、Conventional Commitsフォーマットでコミットメッセージを作成します。
 最初の行は20単語以内のタイトル要約としてください。
 2行目以降は箇条書きで変更を簡潔に説明し、文全体の長さは5行以下におさめてください。
 日本語で記述してください。
-先頭理解しやすいように絵文字を使用してください。"
+"
 
 # run script with injecting 1password
 # alias opi="op"
@@ -151,6 +148,12 @@ export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 
 
 export PATH=$PATH:$HOME/flutter/bin
+#==================
+# Generative AI Settings
+#==================
+export OPENAI_URL="https://models.inference.ai.azure.com"
+export OPENAI_MODEL=gpt-4o
+export OPENAI_API_KEY=$(gh auth token)
 
 #==================
 # Unsynced configuration
