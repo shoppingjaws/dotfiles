@@ -1,6 +1,7 @@
 #==================
 # Zsh
 #==================
+echo "loading Zsh..."
 source ~/.zplug/init.zsh
 # 過去に入力したコマンドの履歴が灰色のサジェストで出る
 zplug "zsh-users/zsh-autosuggestions"
@@ -46,16 +47,9 @@ set -o pushd_ignore_dups
 set -o auto_cd
 
 #==================
-# Bindings
-#==================
-# emacs key bind
-bindkey -e
-bindkey "^[^[[D" backward-word
-bindkey "^[^[[C" forward-word
-
-#==================
 # Alias
 #==================
+echo "loading Alias..."
 alias cza="chezmoi apply;exec zsh"
 alias cze="chezmoi edit"
 alias p8="ping 8.8.8.8"
@@ -162,3 +156,4 @@ if [[ -e "$HOME/.private.zsh" ]]; then
     source $HOME/.private.zsh
 fi
 
+tmux -f ~/.tmux.conf
