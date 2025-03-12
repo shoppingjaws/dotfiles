@@ -150,10 +150,14 @@ export OPENAI_MODEL=gpt-4o
 export OPENAI_API_KEY=$(gh auth token)
 
 #==================
+# WezTerm
+#==================
+export PATH=$PATH:/Applications/WezTerm.app/Contents/MacOS
+source <(wezterm shell-completion --shell zsh)
+
+#==================
 # Unsynced configuration
 #==================
 if [[ -e "$HOME/.private.zsh" ]]; then
     source $HOME/.private.zsh
 fi
-
-tmux -f ~/.tmux.conf
