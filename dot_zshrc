@@ -69,6 +69,7 @@ alias tree="eza -T"
 alias dps="docker ps"
 alias ava="aws-vault"
 alias cw='cd $(ghq list -p | fzf)'
+alias icode="code-insider"
 # jump to default branch
 alias gcm='git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
 alias gr='git pull --rebase origin $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
