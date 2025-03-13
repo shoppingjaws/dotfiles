@@ -1,9 +1,7 @@
 local wezterm = require 'wezterm'
-local helpers = require 'helpers'
 
 local config = wezterm.config_builder()
 
--- helpers.apply_to_config(config)
 
 -- カラースキームの設定
 config.color_scheme = 'Brogrammer'
@@ -19,8 +17,7 @@ config.visual_bell = {
   fade_in_duration_ms = 150,
   fade_out_duration_ms = 150,
   target = "CursorColor",
-},
+}
 
--- Key Binding
 
 return config
