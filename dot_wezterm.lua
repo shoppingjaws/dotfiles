@@ -2,13 +2,19 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
+-- keybinds
+config.disable_default_key_bindings = true
+config.keys = require("keybinds").keys
+config.key_tables = require("keybinds").key_tables
+config.macos_forward_to_ime_modifier_mask = 'SHIFT|CTRL'
+-- config.leader = { key="k", mods="CTRL", timeout_milliseconds = 2000 }
 
+-- input
+config.use_ime = true
 -- カラースキームの設定
 config.color_scheme = 'Brogrammer'
 config.font_size = 16.0
 -- Font & Literal
--- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/UbuntuMono.zip
--- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/SourceCodePro.zip
 config.font = wezterm.font_with_fallback({"UbuntuMono Nerd Font Mono","SauceCodePro Nerd Font Mono"})
 config.window_background_opacity = 0.85
 config.use_ime = true
@@ -20,6 +26,9 @@ config.visual_bell = {
   fade_out_duration_ms = 150,
   target = "CursorColor",
 }
+
+config.initial_cols = 1000 -- 最大化
+config.initial_rows = 1000 -- 最大化
 
 
 return config
