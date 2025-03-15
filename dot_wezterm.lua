@@ -7,6 +7,8 @@ local config = wezterm.config_builder()
 config.color_scheme = 'Brogrammer'
 config.font_size = 16.0
 -- Font & Literal
+-- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/UbuntuMono.zip
+-- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/SourceCodePro.zip
 config.font = wezterm.font_with_fallback({"UbuntuMono Nerd Font Mono","SauceCodePro Nerd Font Mono"})
 config.window_background_opacity = 0.85
 config.use_ime = true
