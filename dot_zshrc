@@ -81,10 +81,7 @@ alias kz="kustomize"
 
 # Git Auto Commit Settings
 export FINE_TUNE_PARAMS='{"temperature": 0.7}'
-export PROMPT_OVERRIDE="与えられたコード変更を調査・説明し、Conventional Commitsフォーマットでコミットメッセージを作成します。
-最初の行は20単語以内のタイトル要約としてください。
-2行目以降は箇条書きで変更を簡潔に説明し、文全体の長さは5行以下におさめてください。
-日本語で記述してください。
+export PROMPT_OVERRIDE="与えられたコード変更を調査・説明し、Conventional Commitsフォーマットでコミットメッセージを作成します。1行で簡潔に記述してください。日本語で記述してください。
 "
 
 # run script with injecting 1password
