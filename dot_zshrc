@@ -75,7 +75,7 @@ alias gcm='git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^re
 alias gr='git pull --rebase origin $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
 alias gp='git push --set-upstream origin "$(git branch --show-current)"'
 alias ghp="gh pr view --web"
-alias gac='git add .;git commit -m "$(gh commit)"'
+alias gac='cd $(git rev-parse --show-toplevel) && git add . && git commit -m "$(gh commit)" && cd -'
 alias ga="git add --all;git diff --staged --stat;"
 alias kz="kustomize"
 
