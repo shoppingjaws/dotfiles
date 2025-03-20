@@ -4,10 +4,13 @@ local config = wezterm.config_builder()
 
 -- keybinds
 config.disable_default_key_bindings = true
+config.leader = { key="k", mods="CMD", timeout_milliseconds = 2000 }
 config.keys = require("keybinds").keys
 config.key_tables = require("keybinds").key_tables
 config.macos_forward_to_ime_modifier_mask = 'SHIFT|CTRL'
--- config.leader = { key="k", mods="CTRL", timeout_milliseconds = 2000 }
+config.scrollback_lines = 10000
+config.enable_scroll_bar = true
+config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 -- input
 config.use_ime = true
