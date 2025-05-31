@@ -26,7 +26,6 @@ packages:
 - name: hashicorp/terraform@v1.9.5
 - name: denoland/deno@v1.46.3
 - name: kubernetes/kompose@v1.35.0
-- name: nodejs/node@v22.11.0
 - name: aws/aws-cli@2.23.8
 - name: oven-sh/bun@bun-v1.2.1
 - name: opentofu/opentofu@v1.9.0
@@ -36,3 +35,4 @@ packages:
 - name: suzuki-shunsuke/pinact@v3.1.2
 - name: apple/container@0.1.0
 - name: suzuki-shunsuke/ghalint@v1.4.1
+- name: GoogleCloudPlatform/cloud-sql-proxy@v2.15.2
