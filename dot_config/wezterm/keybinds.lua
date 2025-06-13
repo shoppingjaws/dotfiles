@@ -92,6 +92,14 @@ return {
         action = act.CloseCurrentPane {
             confirm = true
         }
+    }, {
+        -- Option + Backspace で単語単位削除
+        key = "Backspace",
+        mods = "OPT",
+        action = act.SendKey {
+            key = "w",
+            mods = "CTRL"
+        }
     }},
 
     key_tables = {

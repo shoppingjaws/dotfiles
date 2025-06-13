@@ -56,6 +56,7 @@ alias p8="ping 8.8.8.8"
 alias tf="terraform"
 alias tg="terragrunt"
 alias gc="git checkout"
+alias gw="git worktree"
 function gcb(){
   git checkout -b develop/"$1"
 }
