@@ -100,6 +100,22 @@ return {
             key = "w",
             mods = "CTRL"
         }
+    }, {
+        -- Option + 左矢印で単語単位左移動
+        key = "LeftArrow",
+        mods = "OPT",
+        action = act.SendKey {
+            key = "b",
+            mods = "ALT"
+        }
+    }, {
+        -- Option + 右矢印で単語単位右移動
+        key = "RightArrow",
+        mods = "OPT",
+        action = act.SendKey {
+            key = "f",
+            mods = "ALT"
+        }
     }},
 
     key_tables = {
