@@ -4,7 +4,7 @@
 # Prompt
 #========================
 add_newline = true
-format = '''$directory$cmd_duration$git_branch$git_status$git_state$git_metrics$aws$kubernetes
+format = '''$directory${custom.worktree}$cmd_duration$git_branch$git_status$git_state$git_metrics$aws$kubernetes
  > 
 '''
 right_format = "$env_var"
@@ -67,3 +67,10 @@ style = "cyan bold"
 truncation_length = 3
 truncate_to_repo = false
 truncation_symbol = ".../"
+
+[custom.worktree]
+command = 'if [[ $PWD == $HOME/worktree/* ]]; then echo "🌲"; fi'
+when = true
+shell = ["bash", "--noprofile", "--norc"]
+format = "$output"
+style = ""
