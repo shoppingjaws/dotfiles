@@ -161,7 +161,6 @@ source <(wezterm shell-completion --shell zsh)
 #==================
 # asdf
 #==================
-echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
 source <(asdf completion zsh)
 #==================
 # Unsynced configuration
