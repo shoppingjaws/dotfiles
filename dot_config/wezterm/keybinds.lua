@@ -116,7 +116,12 @@ return {
             key = "f",
             mods = "ALT"
         }
-    }},
+    }, {
+        -- Shit + Enterで改行
+        { key = "Enter", mods = "SHIFT", action = wezterm.action.SendString("\n") }
+    }
+    }
+},
 
     key_tables = {
         copy_mode = {},
