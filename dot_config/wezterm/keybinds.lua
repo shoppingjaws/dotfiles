@@ -120,7 +120,6 @@ return {
         -- Shit + Enterで改行
         { key = "Enter", mods = "SHIFT", action = wezterm.action.SendString("\n") }
     }
-    }
 },
 
     key_tables = {
