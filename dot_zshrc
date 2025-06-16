@@ -159,10 +159,6 @@ export PATH=$PATH:/Applications/WezTerm.app/Contents/MacOS
 source <(wezterm shell-completion --shell zsh)
 
 #==================
-# asdf
-#==================
-source <(asdf completion zsh)
-#==================
 # Unsynced configuration
 #==================
 if [[ -e "$HOME/.private.zsh" ]]; then
