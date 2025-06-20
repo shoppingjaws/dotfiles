@@ -36,3 +36,4 @@ packages:
 - name: apple/container@0.1.0
 - name: suzuki-shunsuke/ghalint@v1.4.1
 - name: GoogleCloudPlatform/cloud-sql-proxy@v2.15.2
+- name: nodejs/node@v24.2.0

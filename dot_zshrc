@@ -62,9 +62,10 @@ function gcb(){
 }
 function gwb(){
   gwb_name=$(git rev-parse --show-toplevel | sed 's|.*/github.com/||')
-  git worktree add --checkout -b develop/"$1" ~/worktree/"$gwb_name"/"$1" && cd ~/worktree/"$gwb_name"/"$1"
+  git worktree add --checkout -b develop/"$1" ~/worktree/develop/"$gwb_name"/"$1" && cd ~/worktree/develop/"$gwb_name"/"$1"
 }
 
+alias z="z -r"
 alias kb="kubectl"
 alias kbe="kubectl exec"
 alias dc="docker compose"
@@ -90,6 +91,8 @@ export FINE_TUNE_PARAMS='{"temperature": 0.7}'
 export PROMPT_OVERRIDE="与えられたコード変更を調査・説明し、Conventional Commitsフォーマットでコミットメッセージを作成します。1行で簡潔に記述してください。日本語で記述してください。
 "
 
+alias gpr="claude -p '変更差分を確認してPRの内容を更新してください。必ず日本語で作成してください。必ずDraftで作成すること。必ず @.github/PULL_REQUEST_TEMPLATE フォーマットに沿わせてください。作成完了後に確認するのでReadyにしないでください'"
+
 # run script with injecting 1password
 # alias opi="op"
 #==================
@@ -104,7 +107,7 @@ fi
 # z
 . "$(/opt/homebrew/bin/brew --prefix)"/etc/profile.d/z.sh
 function zc(){
-  z "$1";
+  z -r "$1";
   code .
 }
 
