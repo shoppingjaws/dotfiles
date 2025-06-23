@@ -62,7 +62,16 @@ function gcb(){
 }
 function gwb(){
   gwb_name=$(git rev-parse --show-toplevel | sed 's|.*/github.com/||')
-  git worktree add --checkout -b develop/"$1" ~/worktree/develop/"$gwb_name"/"$1" && cd ~/worktree/develop/"$gwb_name"/"$1"
+  # リモートブランチの存在確認
+  if git ls-remote --heads origin develop/"$1" | grep -q develop/"$1"; then
+    # リモートブランチが存在する場合は、それをチェックアウト
+    echo "🔄 リモートブランチ 'origin/develop/$1' が見つかりました。既存のブランチをチェックアウトします..."
+    git worktree add --track -b develop/"$1" ~/worktree/develop/"$gwb_name"/"$1" origin/develop/"$1" && cd ~/worktree/develop/"$gwb_name"/"$1"
+  else
+    # リモートブランチが存在しない場合は、新規作成
+    echo "✨ リモートブランチが見つかりません。新規ブランチ 'develop/$1' を作成します..."
+    git worktree add --checkout -b develop/"$1" ~/worktree/develop/"$gwb_name"/"$1" && cd ~/worktree/develop/"$gwb_name"/"$1"
+  fi
 }
 
 alias z="z -r"
