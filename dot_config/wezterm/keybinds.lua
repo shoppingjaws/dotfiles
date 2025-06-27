@@ -116,9 +116,6 @@ return {
             key = "f",
             mods = "ALT"
         }
-    }, {
-        -- Shit + Enterで改行
-        { key = "Enter", mods = "SHIFT", action = wezterm.action.SendString("\n") }
     }
 },
 
@@ -134,6 +131,5 @@ return {
     { key = 'Enter', mods = 'NONE', action = act.CopyMode 'PriorMatch' },
     { key = 'Escape', mods = 'NONE', action = act.CopyMode 'Close' },
         }
-
     }
 }
