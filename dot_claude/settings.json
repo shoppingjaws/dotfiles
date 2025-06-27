@@ -3,6 +3,9 @@
   },
   "permissions": {
     "allow": [
+      "Bash(rg:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
       "Read(~/.zshrc)",
       "Fetch(https://*)",
       "Bash(terraform plan:*)",
@@ -10,19 +13,19 @@
       "Bash(gh workflow list:*)",
       "Bash(find:*)",
       "Bash(ls:*)",
-      "Bash(git:*)",
+      "Bash(git status:*)",
       "Bash(gh run view:*)",
       "Bash(gh run list:*)",
       "Bash(gh run watch:*)",
       "Bash(gh pr create:*)",
       "Bash(gh pr view:*)",
-      "Bash(gh pr list:*)",
       "Bash(gh variable:*)",
       "Bash(gh secret list:*)",
       "Bash(gh project view:*)",
       "Bash(gh project list:*)",
       "Bash(gh pr edit:*)",
-      "Bash(uv:*)"
+      "Bash(terraform plan:*)",
+      "Bash(terraform state list:*)",
     ],
     "deny": [
       "Bash(curl:*)",
@@ -98,6 +101,5 @@
       "Write(/etc/shadow)",
       "Write(/etc/sudoers)"
     ]
-  },
-  "model": "opus"
+  }
 }
