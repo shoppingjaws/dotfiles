@@ -39,3 +39,5 @@ alias nix-rebuild "sudo nix run --extra-experimental-features 'nix-command flake
 
 # etc
 alias z "z -r" # zは最も頻繁にアクセスするディレクトリに飛ぶ
+alias sl "ls"
+alias ls "eza --icons=always -alhg"

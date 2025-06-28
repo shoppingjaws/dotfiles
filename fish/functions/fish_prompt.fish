@@ -46,30 +46,40 @@ end
 
 
 function __env_vars
-  # Environment variables to display (var_name:display_name:color)
+  # Check if in worktrees directory and set IN_WORKTREE
+  if string match -q "$HOME/worktrees*" (pwd)
+    set -gx IN_WORKTREE true
+  else
+    set -e IN_WORKTREE
+  end
+
+  # Environment variables to display (var_name:display_name:color:replacement)
   set -l env_vars_to_show \
-    "DOCKER_HOST" "🐳" "cyan" \
-    "NODE_ENV" "⚡" "green" \
-    "AWS_PROFILE" "󰸏" "yellow"
-  
-  for i in (seq 1 3 (count $env_vars_to_show))
+    "AWS_PROFILE" "󰸏" "yellow" "" \
+    "IN_WORKTREE" "󰐆" "green" ""
+
+  for i in (seq 1 4 (count $env_vars_to_show))
     set -l var_name $env_vars_to_show[$i]
     set -l display_name $env_vars_to_show[(math $i + 1)]
     set -l color $env_vars_to_show[(math $i + 2)]
-    
+    set -l replacement $env_vars_to_show[(math $i + 3)]
     if set -q $var_name
-      set -l var_value (eval echo \$$var_name)
-      echo -n (set_color $color) $display_name $var_value (set_color normal) " "
+      if test "$replacement" = ""
+        echo -n (set_color $color) $display_name (set_color normal) " "
+      else
+        set -l var_value (eval echo \$$var_name)
+        echo -n (set_color $color) $display_name $var_value (set_color normal) " "
+      end
     end
   end
 end
 
 function fish_prompt
-  echo -n (set_color white)"╭─"(set_color normal)
+  echo -n (set_color white)"╭─"(set_color cyan)"󱙳 "(set_color normal)
   __user_host
   __current_path
-  __env_vars
   __git_status
+  __env_vars
   echo -e ''
   echo (set_color white)"╰─"(set_color --bold white)"\$ "(set_color normal)
 end
