@@ -23,20 +23,27 @@ function git_worktree_branch
     # Create worktree directory path
     set -l worktree_dir "$HOME/worktrees/github.com/$repo_path/$branch_name"
     
+    # Check if worktree already exists
+    if git worktree list | grep -q $worktree_dir
+        echo "Switching to existing worktree"
+        cd $worktree_dir
+        return 0
+    end
+    
     # Check if remote branch exists
     if git ls-remote --heads origin $branch_name | grep -q $branch_name
-        echo "Remote branch '$branch_name' exists. Creating worktree from remote..."
+        echo "Creating worktree from remote branch"
         git worktree add $worktree_dir $branch_name
     else
-        echo "Remote branch '$branch_name' does not exist. Creating new worktree from current branch..."
+        echo "Creating new worktree"
         git worktree add -b $branch_name $worktree_dir
     end
     
     if test $status -eq 0
-        echo "Worktree created at: $worktree_dir"
+        echo "Done: $worktree_dir"
         cd $worktree_dir
     else
-        echo "Failed to create worktree"
+        echo "Failed"
         return 1
     end
 end
