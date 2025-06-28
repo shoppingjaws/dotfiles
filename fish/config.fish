@@ -28,6 +28,7 @@ direnv hook fish | source
 
 set -xg GIT_BRANCH_PREFFIX "develop/"
 
+
 #==================
 # Extra configuration
 #==================
