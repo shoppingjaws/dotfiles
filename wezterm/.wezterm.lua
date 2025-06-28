@@ -36,6 +36,12 @@ config.visual_bell = {
 config.initial_cols = 1000 -- 最大化
 config.initial_rows = 1000 -- 最大化
 
+-- アクティブなペインの境界線の色設定
+config.inactive_pane_hsb = {
+  saturation = 0.8,
+  brightness = 0.5,
+}
+
 wezterm.on("bell",function (window,pane)
   window.toast_notification({
   "Claude Code",
