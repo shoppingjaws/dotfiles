@@ -36,3 +36,6 @@ alias cpr "claude -p '変更差分を確認してPRの内容を更新してく�
 
 # nix
 alias nix-rebuild "sudo nix run --extra-experimental-features 'nix-command flakes' nix-darwin/master#darwin-rebuild -- switch --impure --flake $(ghq root)/github.com/shoppingjaws/dotfiles/flake#darwin"
+
+# etc
+alias z "z -r" # zは最も頻繁にアクセスするディレクトリに飛ぶ
