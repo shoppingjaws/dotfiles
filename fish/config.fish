@@ -1,7 +1,6 @@
 #==================
 # Fish Shell Configuration
 #==================
-echo "loading config.fish"
 #==================
 # History Settings
 #==================
@@ -21,8 +20,6 @@ bind \cr history_search
 set -gx EDITOR "code"
 # WezTerm
 fish_add_path /Applications/WezTerm.app/Contents/MacOS
-# brew
-eval (/opt/homebrew/bin/brew shellenv)
 # direnv
 direnv hook fish | source
 
@@ -40,4 +37,3 @@ end
 if test -f "$HOME/.private.fish"
     source "$HOME/.private.fish"
 end
-echo "config.fish loaded"

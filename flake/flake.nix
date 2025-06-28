@@ -37,6 +37,7 @@
       self,
       nixpkgs,
       # nixpkgs-1password,
+      aicommit2,
       nil,
       home-manager,
       nix-darwin,
@@ -253,6 +254,17 @@
                           nil.packages.${system}.nil
                           nixpkgs-ruby.packages.${system}."ruby-3.4"
                         ];
+
+                      # フォントファイルの配置
+                      home.file.".local/share/fonts/Utatane.ttc" = {
+                        source = builtins.fetchurl {
+                          url = "https://github.com/tsunesan3/awsome-jp-coding-fonts/blob/11ccc57a7c0ff7ef99ae69f00a0aaf65962973e6/Utatane/Utatane.ttc";
+                          sha256 = "17jn64zc8d7x6k020p85hfs0lyjf8lhskyqbsbx9c5xg2m51jv3x";
+                        };
+                      };
+
+                      # フォント設定
+                      fonts.fontconfig.enable = true;
 
                       # プログラムの設定
                       programs.home-manager.enable = true;

@@ -20,7 +20,7 @@ config.use_ime = true
 config.color_scheme = 'Brogrammer'
 config.font_size = 16.0
 -- Font & Literal
-config.font = wezterm.font_with_fallback({"UbuntuMono Nerd Font Mono","SauceCodePro Nerd Font Mono"})
+config.font = wezterm.font_with_fallback({"Utatane"})
 config.window_background_opacity = 0.85
 config.use_ime = true
 config.window_decorations = "RESIZE"

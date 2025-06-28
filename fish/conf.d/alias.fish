@@ -1,6 +1,3 @@
-set -gx XDG_CONFIG_HOME "$HOME/.config"
-
-
 # default command overlay
 alias ls "eza -alhg"
 alias p8 "ping 8.8.8.8"

@@ -1,5 +1,3 @@
-set -gx XDG_CONFIG_HOME "$HOME/.config"
-
 if not functions -q fisher
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
     curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.5/functions/fisher.fish | source && fisher install jorgebucaran/fisher
