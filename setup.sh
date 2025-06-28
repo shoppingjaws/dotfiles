@@ -11,8 +11,18 @@ mkdir -p "$XDG_CONFIG_HOME"
 
 echo "Setting up dotfiles symlinks..."
 
+# Function to create symlink with directory creation
+link() {
+    local source="$1"
+    local target="$2"
+    local target_dir=$(dirname "$target")
+    mkdir -p "$target_dir"
+    ln -sf "$source" "$target"
+    echo "Created symlink: $target -> $source"
+}
+
 # Function to create symlinks for all files in a directory
-create_symlinks() {
+link_dir() {
     local source_dir="$1"
     local target_dir="$2"
     if [ -d "$source_dir" ]; then
@@ -31,22 +41,23 @@ create_symlinks() {
 
 
 # fish
-ln -sf "$DOTFILES_DIR/fish/config.fish" "$TARGET_DIR/.config/fish/config.fish"
-ln -sf "$DOTFILES_DIR/fish/common.fish" "$TARGET_DIR/.config/fish/common.fish"
-create_symlinks "$DOTFILES_DIR/fish/conf.d" "$TARGET_DIR/.config/fish/conf.d"
-create_symlinks "$DOTFILES_DIR/fish/functions" "$TARGET_DIR/.config/fish/functions"
+link "$DOTFILES_DIR/fish/config.fish" "$TARGET_DIR/.config/fish/config.fish"
+link "$DOTFILES_DIR/fish/common.fish" "$TARGET_DIR/.config/fish/common.fish"
+link_dir "$DOTFILES_DIR/fish/conf.d" "$TARGET_DIR/.config/fish/conf.d"
+link_dir "$DOTFILES_DIR/fish/functions" "$TARGET_DIR/.config/fish/functions"
 
 # wezterm
-ln -sf "$DOTFILES_DIR/wezterm/.wezterm.lua" "$TARGET_DIR/.wezterm.lua"
-ln -sf "$DOTFILES_DIR/wezterm/keybinds.lua" "$TARGET_DIR/.config/wezterm/keybinds.lua"
+link "$DOTFILES_DIR/wezterm/.wezterm.lua" "$TARGET_DIR/.wezterm.lua"
+link "$DOTFILES_DIR/wezterm/keybinds.lua" "$TARGET_DIR/.config/wezterm/keybinds.lua"
+link "$DOTFILES_DIR/wezterm/Brogrammer.toml" "$TARGET_DIR/.config/wezterm/colors/Brogrammer.toml"
 
 # claude
-create_symlinks "$DOTFILES_DIR/claude" "$TARGET_DIR/.claude"
+link_dir "$DOTFILES_DIR/claude" "$TARGET_DIR/.claude"
 
 # aqua
-ln -sf "$DOTFILES_DIR/aqua/aqua.yaml" "$TARGET_DIR/.config/aquaproj-aqua/aqua.yaml"
+link "$DOTFILES_DIR/aqua/aqua.yaml" "$TARGET_DIR/.config/aquaproj-aqua/aqua.yaml"
 
 # hammerspoon
-ln -sf "$DOTFILES_DIR/hammerspoon/init.lua" "$TARGET_DIR/.hammerspoon/init.lua"
+link "$DOTFILES_DIR/hammerspoon/init.lua" "$TARGET_DIR/.hammerspoon/init.lua"
 
 echo "Setup complete!"
