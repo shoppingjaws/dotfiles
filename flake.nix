@@ -207,7 +207,7 @@
                     };
 
                     brews = [
-                      "sl"
+                      "aqua"
                     ];
 
                     casks = [

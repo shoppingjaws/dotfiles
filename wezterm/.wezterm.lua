@@ -11,6 +11,8 @@ config.macos_forward_to_ime_modifier_mask = 'SHIFT|CTRL'
 config.scrollback_lines = 10000
 config.enable_scroll_bar = true
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
+config.default_prog = { '/opt/homebrew/bin/fish', '-l' }
+
 
 -- input
 config.use_ime = true
@@ -32,6 +34,15 @@ config.visual_bell = {
 
 config.initial_cols = 1000 -- 最大化
 config.initial_rows = 1000 -- 最大化
+
+wezterm.on("bell",function (window,pane)
+  window.toast_notification({
+"Claude Code",
+ "Task completed",
+ wezterm.nerdfonts_icon("bell"),4000
+
+  })
+end)
 
 
 return config

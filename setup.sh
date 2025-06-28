@@ -32,7 +32,9 @@ create_symlinks() {
 
 # fish
 ln -sf "$DOTFILES_DIR/fish/config.fish" "$TARGET_DIR/.config/fish/config.fish"
+ln -sf "$DOTFILES_DIR/fish/common.fish" "$TARGET_DIR/.config/fish/common.fish"
 create_symlinks "$DOTFILES_DIR/fish/conf.d" "$TARGET_DIR/.config/fish/conf.d"
+create_symlinks "$DOTFILES_DIR/fish/functions" "$TARGET_DIR/.config/fish/functions"
 
 # wezterm
 ln -sf "$DOTFILES_DIR/wezterm/.wezterm.lua" "$TARGET_DIR/.wezterm.lua"
