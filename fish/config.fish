@@ -39,3 +39,5 @@ end
 if test -f "$HOME/.private.fish"
     source "$HOME/.private.fish"
 end
+
+source ~/.local/share/icons-in-terminal/icons.fish &
