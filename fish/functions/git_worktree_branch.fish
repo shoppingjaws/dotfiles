@@ -39,6 +39,9 @@ function git_worktree_branch
     if git ls-remote --heads origin $branch_name | grep -q $branch_name
         echo "Creating worktree from remote branch"
         git worktree add $worktree_dir $branch_name
+    else if git branch --list $branch_name | grep -q $branch_name
+        echo "Creating worktree from local branch"
+        git worktree add $worktree_dir $branch_name
     else
         echo "Creating new worktree"
         git worktree add -b $branch_name $worktree_dir
