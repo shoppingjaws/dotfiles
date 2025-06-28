@@ -4,13 +4,13 @@ end
 
 function __current_path
   set -l current_path (pwd)
-  
+
   # Path abbreviations (original:abbreviation)
   set -l path_abbreviations \
     "github.com" "g" \
     "/Users/$USER" "~" \
     "shoppingjaws" "sj"
-  
+
   # Apply abbreviations with bold formatting
   for i in (seq 1 2 (count $path_abbreviations))
     set -l original $path_abbreviations[$i]
@@ -18,7 +18,7 @@ function __current_path
     set -l bold_abbrev (set_color --bold white)$abbrev(set_color --bold blue)
     set current_path (string replace $original $bold_abbrev $current_path)
   end
-  
+
   echo -n (set_color --bold blue) $current_path (set_color normal) 
 end
 
@@ -40,7 +40,7 @@ function __git_status
       set git_info '<'$git_branch'>'
     end
 
-    echo -n (set_color yellow) $git_info (set_color normal) 
+    echo -n (set_color yellow)$git_info (set_color normal)
   end
 end
 
