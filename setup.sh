@@ -25,9 +25,22 @@ link() {
 link_dir() {
     local source_dir="$1"
     local target_dir="$2"
+    local pattern="${3:-*}"  # Default to all files if no pattern specified
     if [ -d "$source_dir" ]; then
         mkdir -p "$target_dir"
-        for file in "$source_dir"/*; do
+        
+        # Remove existing symlinks that match the pattern
+        if [ -d "$target_dir" ]; then
+            for link in "$target_dir"/$pattern; do
+                if [ -L "$link" ]; then
+                    rm -f "$link"
+                    echo "Removed existing symlink: $link"
+                fi
+            done
+        fi
+        
+        # Create new symlinks
+        for file in "$source_dir"/$pattern; do
             if [ -f "$file" ]; then
                 local filename=$(basename "$file")
                 ln -sf "$file" "$target_dir/$filename"
@@ -42,9 +55,8 @@ link_dir() {
 
 # fish
 link "$DOTFILES_DIR/fish/config.fish" "$TARGET_DIR/.config/fish/config.fish"
-link "$DOTFILES_DIR/fish/common.fish" "$TARGET_DIR/.config/fish/common.fish"
-link_dir "$DOTFILES_DIR/fish/conf.d" "$TARGET_DIR/.config/fish/conf.d"
-link_dir "$DOTFILES_DIR/fish/functions" "$TARGET_DIR/.config/fish/functions"
+link_dir "$DOTFILES_DIR/fish/conf.d" "$TARGET_DIR/.config/fish/conf.d" "*.sj.fish"
+link_dir "$DOTFILES_DIR/fish/functions" "$TARGET_DIR/.config/fish/functions" "*.sj.fish"
 
 # wezterm
 link "$DOTFILES_DIR/wezterm/.wezterm.lua" "$TARGET_DIR/.wezterm.lua"

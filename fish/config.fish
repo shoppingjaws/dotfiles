@@ -20,6 +20,8 @@ bind \cr history_search
 set -gx EDITOR "code"
 # WezTerm
 fish_add_path /Applications/WezTerm.app/Contents/MacOS
+# fisher
+fish_add_path $__fish_config_dir/fisher
 # direnv
 direnv hook fish | source
 
