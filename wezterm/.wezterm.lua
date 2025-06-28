@@ -51,5 +51,26 @@ wezterm.nerdfonts_icon("bell"),4000
   })
 end)
 
+-- タブタイトルをカレントディレクトリにする
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  local pane = tab.active_pane
+  local cwd = pane.current_working_dir
+  
+  if cwd then
+    -- URLからパスを取得
+    local path = cwd.file_path
+    -- ホームディレクトリを ~ に置換
+    path = path:gsub("^" .. os.getenv("HOME"), "~")
+    -- 最後のディレクトリ名だけを取得
+    local basename = path:match("([^/]+)/?$") or path
+    
+    return {
+      { Text = " " .. basename .. " " },
+    }
+  end
+  
+  return tab.active_pane.title
+end)
+
 
 return config
