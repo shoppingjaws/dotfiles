@@ -13,7 +13,7 @@ function git_worktree_branch
     
     # Get repository info
     set -l repo_url (git remote get-url origin)
-    set -l repo_path (echo $repo_url | sed 's/.*github\.com[:/]\(.*\)\.git$/\1/' | sed 's/.*github\.com[:/]\(.*\)$/\1/')
+    set -l repo_path (echo $repo_url | awk -F'github.com[:/]' '{print $2}' | awk -F'.git' '{print $1}')
     
     if test -z "$repo_path"
         echo "Error: Could not determine repository path from origin URL"
