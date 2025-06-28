@@ -116,6 +116,16 @@ return {
             key = "f",
             mods = "ALT"
         }
+    }, {
+        -- ⌘ + [ で前のペインに切り替え
+        key = "[",
+        mods = "CMD",
+        action = act.ActivatePaneDirection 'Prev'
+    }, {
+        -- ⌘ + ] で次のペインに切り替え
+        key = "]",
+        mods = "CMD",
+        action = act.ActivatePaneDirection 'Next'
     }
 },
 

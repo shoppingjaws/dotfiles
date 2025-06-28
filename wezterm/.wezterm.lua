@@ -13,11 +13,12 @@ config.enable_scroll_bar = true
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 config.default_prog = { '/opt/homebrew/bin/fish', '-l' }
 
+config.colors = require("colors").Brogrammer
 
 -- input
 config.use_ime = true
 -- カラースキームの設定
-config.color_scheme = 'Brogrammer'
+-- config.color_scheme = 'Brogrammer'
 config.font_size = 16.0
 -- Font & Literal
 config.font = wezterm.font_with_fallback({"Utatane"})

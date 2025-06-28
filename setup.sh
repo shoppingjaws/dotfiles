@@ -48,7 +48,7 @@ link_dir "$DOTFILES_DIR/fish/functions" "$TARGET_DIR/.config/fish/functions"
 
 # wezterm
 link "$DOTFILES_DIR/wezterm/.wezterm.lua" "$TARGET_DIR/.wezterm.lua"
-link "$DOTFILES_DIR/wezterm/keybinds.lua" "$TARGET_DIR/.config/wezterm/keybinds.lua"
+link_dir "$DOTFILES_DIR/wezterm" "$TARGET_DIR/.config/wezterm/"
 link "$DOTFILES_DIR/wezterm/Brogrammer.toml" "$TARGET_DIR/.config/wezterm/colors/Brogrammer.toml"
 
 # claude
