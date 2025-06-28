@@ -5,10 +5,10 @@
 #
 # nix-darwin (システム設定 + home-manager統合) - 管理者権限が必要
 # 初回:
-# $ sudo nix run --extra-experimental-features "nix-command flakes" nix-darwin/master#darwin-rebuild -- switch --impure --flake .#studistDarwin
+# $ sudo nix run --extra-experimental-features "nix-command flakes" nix-darwin/master#darwin-rebuild -- switch --impure --flake .#darwin
 #
 # 2回目以降 (/run/current-system/sw/bin/ にパスが通っていれば):
-# $ sudo darwin-rebuild switch --impure --flake .#studistDarwin
+# $ sudo darwin-rebuild switch --impure --flake .#darwin
 #
 # 注意事項:
 # - home-managerはnix-darwinに統合されているため、別途実行する必要はありません
@@ -16,6 +16,7 @@
   description = "A flake for me";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    aicommit2.url = "github:tak-bro/aicommit2";
     # # 特定のコミットハッシュで固定したnixpkgs（1password用）
     # nixpkgs-1password.url = "github:NixOS/nixpkgs/86e78d3d2084ff87688da662cf78c2af085d8e73";
     #
@@ -297,7 +298,7 @@
             };
         in
         {
-          studistDarwin = mkDarwinConfig builtins.currentSystem;
+          darwin = mkDarwinConfig builtins.currentSystem;
         };
 
       # standalone版のhome-manager設定（現在は使用していません）
