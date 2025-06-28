@@ -126,6 +126,16 @@ return {
         key = "]",
         mods = "CMD",
         action = act.ActivatePaneDirection 'Next'
+    }, {
+        -- ⌘ + ↑ で前のプロンプトまでスクロール
+        key = "UpArrow",
+        mods = "CMD",
+        action = act.ScrollToPrompt(-1)
+    }, {
+        -- ⌘ + ↓ で次のプロンプトまでスクロール
+        key = "DownArrow",
+        mods = "CMD",
+        action = act.ScrollToPrompt(1)
     }
 },
 
