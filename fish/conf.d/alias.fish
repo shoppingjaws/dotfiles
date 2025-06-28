@@ -2,7 +2,7 @@ set -gx XDG_CONFIG_HOME "$HOME/.config"
 
 
 # default command overlay
-# alias ls "eza -alhg"
+alias ls "eza -alhg"
 alias p8 "ping 8.8.8.8"
 # alias cat "bat --style=plain"
 # alias tree "eza -T"
@@ -11,7 +11,6 @@ alias p8 "ping 8.8.8.8"
 alias gc "git checkout"
 alias gw "git worktree"
 alias gui "lazygit"
-alias gcb "git_checkout_default"
 alias gp "git push --set-upstream origin (git branch --show-current)"
 alias ga "git add --all; git diff --staged --stat;"
 alias gac 'cd (git rev-parse --show-toplevel); and git add .; and git commit -m (gh commit); and cd -'
