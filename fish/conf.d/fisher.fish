@@ -11,6 +11,3 @@ if not functions -q fisher
 end
 
 fish_add_path $__fish_config_dir/fisher
-
-# cdしたら自動でls
-set -U autols_cmd eza
