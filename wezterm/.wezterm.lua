@@ -37,9 +37,9 @@ config.initial_rows = 1000 -- 最大化
 
 wezterm.on("bell",function (window,pane)
   window.toast_notification({
-"Claude Code",
- "Task completed",
- wezterm.nerdfonts_icon("bell"),4000
+  "Claude Code",
+  "Task completed",
+wezterm.nerdfonts_icon("bell"),4000
 
   })
 end)
