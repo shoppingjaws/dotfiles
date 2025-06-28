@@ -26,6 +26,8 @@ eval (/opt/homebrew/bin/brew shellenv)
 # direnv
 direnv hook fish | source
 
+set -xg GIT_BRANCH_PREFFIX "develop/"
+
 #==================
 # Extra configuration
 #==================

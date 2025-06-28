@@ -6,6 +6,11 @@
 function git_worktree_branch
     set -l branch_name $argv[1]
     
+    # Apply prefix if set
+    if test -n "$GIT_BRANCH_PREFIX"
+        set branch_name "$GIT_BRANCH_PREFIX$branch_name"
+    end
+    
     if test -z "$branch_name"
         echo "Usage: git_worktree_branch <branch_name>"
         return 1
