@@ -38,9 +38,29 @@ config.inactive_pane_hsb = {
   brightness = 0.5,
 }
 
+-- 前回のアクティブペインを保存する変数
+local last_active_pane_id = nil
+
+-- ペインフォーカス変更ハンドラー
+local function pane_focus_changed_handler(tab, pane)
+  local current_pane_id = pane.pane_id
+  
+  if last_active_pane_id and last_active_pane_id ~= current_pane_id and tab.is_active then
+    wezterm.log_info("Pane lost focus: " .. last_active_pane_id .. " -> " .. current_pane_id .. " in tab " .. tab.tab_id)
+    last_active_pane_id = current_pane_id
+  elseif tab.is_active and not last_active_pane_id then
+    last_active_pane_id = current_pane_id
+  end
+end
+
 -- タブタイトルをカレントディレクトリにする
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local pane = tab.active_pane
+  
+  if tab.is_active then
+    pane_focus_changed_handler(tab, pane)
+  end
+  
   local cwd = pane.current_working_dir
   if cwd then
     -- URLからパスを取得
