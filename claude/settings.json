@@ -1,5 +1,6 @@
 {
   "model": "sonnet",
+  "preferredNotifChannel": "terminal_bell",
   "env": {
   },
   "permissions": {
