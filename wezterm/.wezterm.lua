@@ -56,7 +56,7 @@ local function monitor_pane_focus_changes(window, pane)
   if current_active_pane_id ~= active_pane_id then
     -- If we had a previous active pane, check if it completed tokens processing
     if current_active_pane_id then
-      wezterm.log_info("Pane " .. tostring(current_active_pane_id) .. " lost focus")
+      -- wezterm.log_info("Pane " .. tostring(current_active_pane_id) .. " lost focus")
       local tab = pane:tab()
       local previous_pane = get_pane_by_id(tab, current_active_pane_id)
       if previous_pane then
@@ -66,7 +66,7 @@ local function monitor_pane_focus_changes(window, pane)
     
     -- Update current active pane
     current_active_pane_id = active_pane_id
-    wezterm.log_info("Pane " .. tostring(active_pane_id) .. " gained focus")
+    -- wezterm.log_info("Pane " .. tostring(active_pane_id) .. " gained focus")
     
     -- Also check the new active pane for tokens (to detect new tasks)
     check_pane_tokens(window, pane)
