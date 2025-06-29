@@ -136,6 +136,11 @@ return {
         key = "DownArrow",
         mods = "CMD",
         action = act.ScrollToPrompt(1)
+    },
+    {
+        key = "Enter",
+        mods = "SHIFT",
+        action = wezterm.action.SendString("\n")
     }
 },
 
