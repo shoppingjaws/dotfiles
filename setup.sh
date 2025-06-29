@@ -59,7 +59,7 @@ link_dir "$DOTFILES_DIR/fish/conf.d" "$TARGET_DIR/.config/fish/conf.d" "*.fish"
 link_dir "$DOTFILES_DIR/fish/functions" "$TARGET_DIR/.config/fish/functions" "*.fish"
 
 # wezterm
-link "$DOTFILES_DIR/wezterm/.wezterm.lua" "$TARGET_DIR/.wezterm.lua"
+link "$DOTFILES_DIR/wezterm/wezterm.lua" "$TARGET_DIR/wezterm.lua"
 link_dir "$DOTFILES_DIR/wezterm" "$TARGET_DIR/.config/wezterm/"
 link "$DOTFILES_DIR/wezterm/Brogrammer.toml" "$TARGET_DIR/.config/wezterm/colors/Brogrammer.toml"
 
