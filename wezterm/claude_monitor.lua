@@ -27,7 +27,7 @@ local function check_pane_content(pane_obj, pane_id, add_only)
       -- 監視中のペインで"tokens · esc to interrupt"が含まれなくなった（追加専用でない場合のみ）
       monitoring_panes[pane_id] = nil
       wezterm.log_info("✅ [MONITOR] Removed pane " .. pane_id .. " from monitoring list - token processing completed")
-      
+
       -- トースト通知を送信
       wezterm.gui.gui_windows()[1]:toast_notification(
         "Claude Code",
