@@ -2,6 +2,77 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
+-- Pane monitoring state
+local monitored_panes = {}
+local current_active_pane_id = nil
+
+-- Function to send WezTerm toast notification
+local function send_notification(window, pane_id, message)
+  window:toast_notification("WezTerm Monitor", message .. " (Pane " .. tostring(pane_id) .. ")", nil, 4000)
+end
+
+-- Function to check if pane contains the target string
+local function pane_contains_tokens(pane)
+  local text = pane:get_logical_lines_as_text(10)
+  return string.find(text, "tokens · esc to interrupt") ~= nil
+end
+
+-- Function to check a specific pane for token completion
+local function check_pane_tokens(window, pane)
+  local pane_id = pane:pane_id()
+  local has_tokens = pane_contains_tokens(pane)
+  
+  if has_tokens then
+    -- If this is a new pane with tokens, add it to monitoring
+    if not monitored_panes[pane_id] then
+      monitored_panes[pane_id] = true
+      wezterm.log_info("Claude Code task detected in pane " .. tostring(pane_id))
+    end
+  else
+    -- If pane was previously monitored but no longer has tokens, send notification
+    if monitored_panes[pane_id] then
+      wezterm.log_info("Claude Code task finished in pane " .. tostring(pane_id))
+      send_notification(window, pane_id, "Tokens processing completed!")
+      monitored_panes[pane_id] = nil
+    end
+  end
+end
+
+-- Function to get pane by ID from current tab
+local function get_pane_by_id(tab, target_pane_id)
+  local panes = tab:panes()
+  for _, pane in ipairs(panes) do
+    if pane:pane_id() == target_pane_id then
+      return pane
+    end
+  end
+  return nil
+end
+
+-- Focus-based monitoring function (much more efficient)
+local function monitor_pane_focus_changes(window, pane)
+  local active_pane_id = pane:pane_id()
+  -- Check if active pane has changed
+  if current_active_pane_id ~= active_pane_id then
+    -- If we had a previous active pane, check if it completed tokens processing
+    if current_active_pane_id then
+      wezterm.log_info("Pane " .. tostring(current_active_pane_id) .. " lost focus")
+      local tab = pane:tab()
+      local previous_pane = get_pane_by_id(tab, current_active_pane_id)
+      if previous_pane then
+        check_pane_tokens(window, previous_pane)
+      end
+    end
+    
+    -- Update current active pane
+    current_active_pane_id = active_pane_id
+    wezterm.log_info("Pane " .. tostring(active_pane_id) .. " gained focus")
+    
+    -- Also check the new active pane for tokens (to detect new tasks)
+    check_pane_tokens(window, pane)
+  end
+end
+
 -- keybinds
 config.automatically_reload_config = true
 config.disable_default_key_bindings = true
@@ -65,5 +136,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   return tab.active_pane.title
 end)
 
+-- Monitor pane focus changes for "tokens · esc to interrupt" (performance optimized)
+-- Note: format-window-title doesn't provide window object, so we use update-right-status
+wezterm.on("update-right-status", function(window, pane)
+  monitor_pane_focus_changes(window, pane)
+end)
 
 return config
