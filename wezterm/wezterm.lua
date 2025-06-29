@@ -38,27 +38,23 @@ config.inactive_pane_hsb = {
   brightness = 0.5,
 }
 
--- 前回のアクティブペインを保存する変数
-local last_active_pane_id = nil
+local pane_focus_handler = require("pane_focus_handler")
+local claude_monitor = require("claude_monitor")
 
--- ペインフォーカス変更ハンドラー
-local function pane_focus_changed_handler(tab, pane)
-  local current_pane_id = pane.pane_id
-  
-  if last_active_pane_id and last_active_pane_id ~= current_pane_id and tab.is_active then
-    wezterm.log_info("Pane lost focus: " .. last_active_pane_id .. " -> " .. current_pane_id .. " in tab " .. tab.tab_id)
-    last_active_pane_id = current_pane_id
-  elseif tab.is_active and not last_active_pane_id then
-    last_active_pane_id = current_pane_id
-  end
-end
+-- 古いペイン（フォーカスを失ったペイン）の文字列を10行取得するコールバックを登録
+pane_focus_handler.register_pane_focus_callback(claude_monitor.monitor_old_pane_content)
+
+-- 右ステータスの更新イベントで監視ペインの状態をチェック
+wezterm.on("update-right-status", function(window, pane)
+  claude_monitor.check_monitoring_panes()
+end)
 
 -- タブタイトルをカレントディレクトリにする
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local pane = tab.active_pane
   
   if tab.is_active then
-    pane_focus_changed_handler(tab, pane)
+    pane_focus_handler.pane_focus_changed_handler(tab, pane)
   end
   
   local cwd = pane.current_working_dir
