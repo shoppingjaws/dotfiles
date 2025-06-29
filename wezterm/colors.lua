@@ -15,6 +15,6 @@ return {
       "#d6dbe5", "#de352e", "#1dd361", "#f3bd09",
       "#1081d6", "#5350b9", "#0f7ddb", "#ffffff"
     },
-    split = "yellow",
+    split = "#f3bd09",
   }
 }
