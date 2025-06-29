@@ -44,9 +44,10 @@ local claude_monitor = require("claude_monitor")
 -- 古いペイン（フォーカスを失ったペイン）の文字列を10行取得するコールバックを登録
 pane_focus_handler.register_pane_focus_callback(claude_monitor.monitor_old_pane_content)
 
--- 右ステータスの更新イベントで監視ペインの状態をチェック
+-- 右ステータス更新時に監視ペインの状態とアクティブペインをチェック
 wezterm.on("update-right-status", function(window, pane)
   claude_monitor.check_monitoring_panes()
+  claude_monitor.monitor_active_pane(pane)
 end)
 
 -- タブタイトルをカレントディレクトリにする
