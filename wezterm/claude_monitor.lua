@@ -3,7 +3,7 @@ local wezterm = require 'wezterm'
 -- Configuration
 local CONFIG = {
   DEBUG = false,
-  TIMER_INTERVAL = 10, -- seconds
+  TIMER_INTERVAL = 5, -- seconds
   NOTIFICATION_DURATION = 4000, -- milliseconds
   PANE_LINES_TO_CHECK = 10,
   TOKEN_PATTERN = "tokens · esc to interrupt"
