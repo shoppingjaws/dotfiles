@@ -259,7 +259,7 @@
                       home.file.".local/share/fonts/Utatane.ttc" = {
                         source = builtins.fetchurl {
                           url = "https://github.com/tsunesan3/awsome-jp-coding-fonts/blob/11ccc57a7c0ff7ef99ae69f00a0aaf65962973e6/Utatane/Utatane.ttc";
-                          sha256 = "17jn64zc8d7x6k020p85hfs0lyjf8lhskyqbsbx9c5xg2m51jv3x";
+                          sha256 = "12r7p30jzjd176g4shbq881x30c7mw9xjgnx0pz45jra3835ssa3";
                         };
                       };
 
