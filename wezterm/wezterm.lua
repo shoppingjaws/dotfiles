@@ -19,7 +19,7 @@ config.use_ime = true
 config.font_size = 16.0
 -- Font & Literal
 config.font = wezterm.font_with_fallback({
-  {family="0xproto"},
+  {family="0xProto"},
   {family="Source Han Code JP"},
 })
 config.window_background_opacity = 0.85
