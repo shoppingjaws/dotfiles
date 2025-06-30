@@ -19,8 +19,8 @@ config.use_ime = true
 config.font_size = 16.0
 -- Font & Literal
 config.font = wezterm.font_with_fallback({
-  {family="Utatane"},
-  {family="Symbols Nerd Font Mono", scale=1.0}
+  {family="0xproto"},
+  {family="Source Han Code JP"},
 })
 config.window_background_opacity = 0.85
 config.use_ime = true
