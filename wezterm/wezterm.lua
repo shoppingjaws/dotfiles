@@ -38,18 +38,17 @@ config.inactive_pane_hsb = {
   brightness = 0.5,
 }
 
-local claude_monitor = require("claude_monitor")
+-- local claude_monitor = require("claude_monitor")
 
--- 右ステータス更新時に監視ペインの状態とアクティブペインをチェック
-wezterm.on("update-right-status", function(window, pane)
-  claude_monitor.check_monitoring_panes()
-  claude_monitor.monitor_active_pane(pane)
-end)
+-- -- 右ステータス更新時に監視ペインの状態とアクティブペインをチェック
+-- wezterm.on("update-right-status", function(window, pane)
+--   claude_monitor.check_monitoring_panes()
+--   claude_monitor.monitor_active_pane(pane)
+-- end)
 
 -- タブタイトルをカレントディレクトリにする
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local pane = tab.active_pane
-  
   local cwd = pane.current_working_dir
   if cwd then
     -- URLからパスを取得
@@ -74,5 +73,25 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   return tab.active_pane.title
 end)
 
+
+local function is_claude(pane)
+  local process = pane:get_foreground_process_info()
+  if not process or not process.argv then
+    return false
+  end
+  -- 引数に"claude"が含まれているかチェック
+  for _, arg in ipairs(process.argv) do
+    if arg:find("claude") then
+      return true
+    end
+  end
+  return false
+end
+
+wezterm.on("bell", function(window, pane)
+  if is_claude(pane) then
+    window:toast_notification("Claude Code", "Task completed", nil, 4000)
+  end
+end)
 
 return config
