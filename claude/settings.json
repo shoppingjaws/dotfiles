@@ -28,7 +28,7 @@
       "Bash(gh project list:*)",
       "Bash(gh pr edit:*)",
       "Bash(terraform plan:*)",
-      "Bash(terraform state list:*)",
+      "Bash(terraform state list:*)"
     ],
     "deny": [
       "Bash(curl:*)",
