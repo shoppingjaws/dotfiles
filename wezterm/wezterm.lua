@@ -46,17 +46,40 @@ config.inactive_pane_hsb = {
 --   claude_monitor.monitor_active_pane(pane)
 -- end)
 
--- タブタイトルをカレントディレクトリにする
+-- タブタイトルをgitリポのルートディレクトリ名にする
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local pane = tab.active_pane
   local cwd = pane.current_working_dir
   if cwd then
-    -- URLからパスを取得
     local path = cwd.file_path
-    -- ホームディレクトリを ~ に置換
-    path = path:gsub("^" .. os.getenv("HOME"), "~")
-    -- 最後のディレクトリ名だけを取得
-    local basename = path:match("([^/]+)/?$") or path
+    
+    -- gitリポジトリのルートディレクトリを探す
+    local git_root = nil
+    local current_path = path
+    
+    while current_path and current_path ~= "/" do
+      local git_dir = current_path .. "/.git"
+      local file = io.open(git_dir, "r")
+      if file then
+        file:close()
+        git_root = current_path
+        break
+      else
+        -- .gitディレクトリが存在しない場合は親ディレクトリをチェック
+        current_path = current_path:match("(.*)/.+")
+      end
+    end
+    
+    local basename
+    if git_root then
+      -- gitリポジトリのルートディレクトリ名を取得
+      basename = git_root:match("([^/]+)/?$") or git_root
+    else
+      -- gitリポジトリでない場合はカレントディレクトリ名
+      local display_path = path:gsub("^" .. os.getenv("HOME"), "~")
+      basename = display_path:match("([^/]+)/?$") or display_path
+    end
+    
     -- 32文字に固定（パディングで調整）
     local title = " " .. basename .. " "
     if #title < 32 then

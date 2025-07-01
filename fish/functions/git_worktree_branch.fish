@@ -6,8 +6,8 @@
 function git_worktree_branch
     set -l branch_name $argv[1]
     
-    # Apply prefix if set
-    if test -n "$GIT_BRANCH_PREFIX"
+    # Apply prefix if set, but only if branch_name doesn't already contain a prefix (/)
+    if test -n "$GIT_BRANCH_PREFIX"; and not string match -q "*/*" "$branch_name"
         set branch_name "$GIT_BRANCH_PREFIX$branch_name"
     end
     
