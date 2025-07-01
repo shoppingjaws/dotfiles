@@ -24,7 +24,7 @@ packages:
 - name: goreleaser/goreleaser@v2.2.0
 - name: starship/starship@v1.20.1
 - name: hashicorp/terraform@v1.9.5
-- name: denoland/deno@v1.46.3
+- name: denoland/deno@v2.3.7
 - name: kubernetes/kompose@v1.35.0
 - name: aws/aws-cli@2.23.8
 - name: oven-sh/bun@bun-v1.2.1
@@ -37,3 +37,4 @@ packages:
 - name: suzuki-shunsuke/ghalint@v1.4.1
 - name: GoogleCloudPlatform/cloud-sql-proxy@v2.15.2
 - name: nodejs/node@v24.2.0
+- name: denoland/deno@v2.3.7

@@ -15,7 +15,7 @@
       "Bash(gh workflow list:*)",
       "Bash(find:*)",
       "Bash(ls:*)",
-      "Edit(*)",
+      "Bash(mkdir:*)",
       "Bash(git status:*)",
       "Bash(gh run view:*)",
       "Bash(gh run list:*)",
