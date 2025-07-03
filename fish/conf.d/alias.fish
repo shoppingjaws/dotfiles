@@ -32,7 +32,7 @@ alias kz "kustomize"
 
 # claude
 alias c "claude"
-alias cpr "claude -p  --allowedTools Bash(gh:*) 'ghコマンドを使って変更差分を確認してPRの内容を更新してください。必ず日本語で作成してください。必ずDraftで作成すること。必ず @.github/PULL_REQUEST_TEMPLATE フォーマットに沿わせてください。作成完了後に確認するのでReadyにしないでください。作成したPRのURLを最後に出力してください。'"
+alias cpr "claude -p  'ghコマンドを使って変更差分を確認してPRの内容を更新してください。必ず日本語で作成してください。必ずDraftで作成すること。必ず @.github/PULL_REQUEST_TEMPLATE フォーマットに沿わせてください。作成完了後に確認するのでReadyにしないでください。作成したPRのURLを最後に出力してください。'"
 
 # nix
 alias nix-rebuild "sudo nix run --extra-experimental-features 'nix-command flakes' nix-darwin/master#darwin-rebuild -- switch --impure --flake $(ghq root)/github.com/shoppingjaws/dotfiles/flake#darwin"
