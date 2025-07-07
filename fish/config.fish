@@ -25,6 +25,9 @@ fish_add_path $__fish_config_dir/fisher
 # direnv
 direnv hook fish | source
 
+# mise
+mise activate fish | source
+
 set -xg GIT_BRANCH_PREFIX "develop/"
 
 

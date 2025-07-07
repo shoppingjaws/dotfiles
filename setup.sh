@@ -70,4 +70,7 @@ link "$DOTFILES_DIR/aqua/aqua.yaml" "$TARGET_DIR/.config/aquaproj-aqua/aqua.yaml
 # hammerspoon
 link "$DOTFILES_DIR/hammerspoon/init.lua" "$TARGET_DIR/.hammerspoon/init.lua"
 
+# mise
+link "$DOTFILES_DIR/mise/mise.toml" "$TARGET_DIR/.config/mise/mise.toml"
+
 echo "Setup complete!"
