@@ -29,6 +29,7 @@ direnv hook fish | source
 mise activate fish | source
 
 set -xg GIT_BRANCH_PREFIX "develop/"
+fish_add_path (npm prefix --location=global)/bin
 
 
 #==================
