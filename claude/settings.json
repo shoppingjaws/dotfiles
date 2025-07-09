@@ -30,7 +30,10 @@
       "Bash(terraform state list:*)",
       "Bash(kustomize build:*)",
       "Bash(kubectl get:*)",
-      "Bash(kubectl describe:*)"
+      "Bash(kubectl describe:*)",
+      "Fetch(*)",
+      "List(*)",
+      "Read(*)"
     ],
     "deny": [
       "Bash(curl:*)",
