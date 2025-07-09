@@ -1,9 +1,15 @@
 {
+<<<<<<< Updated upstream
   "preferredNotifChannel": "terminal_bell",
   "env": {
   },
+=======
+  "env": {},
+>>>>>>> Stashed changes
   "permissions": {
     "allow": [
+      "Bash(diff:*)",
+      "Bash(echo:*)",
       "Bash(rg:*)",
       "Bash(grep:*)",
       "Bash(find:*)",
@@ -109,5 +115,6 @@
       "Write(/etc/shadow)",
       "Write(/etc/sudoers)"
     ]
-  }
+  },
+  "preferredNotifChannel": "terminal_bell"
 }

@@ -13,3 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working across 
 - Focus on high-level problem and solution
 - PR titles should be concise and clearly describe the changes made
 - For PR templates, write 'NA' for any sections you don't understand
+
+## Task Guidelines
+
+- When creating scripts for temporary file operations or repetitive tasks, it is recommended to write them in Deno.
