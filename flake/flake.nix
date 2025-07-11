@@ -208,7 +208,8 @@
                     };
 
                     brews = [
-                      "aqua"
+                      "aqua",
+                      "mise",
                     ];
 
                     casks = [
