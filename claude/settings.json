@@ -6,7 +6,6 @@
     "allow": [
       "Bash(diff:*)",
       "Bash(echo:*)",
-      // "Edit(*)",
       "Bash(rg:*)",
       "Bash(grep:*)",
       "Read(~/.zshrc)",
@@ -35,7 +34,8 @@
       "Bash(kubectl describe:*)",
       "Fetch(*)",
       "List(*)",
-      "Read(*)"
+      "Read(./*)",
+      "Edit(./*)"
     ],
     "deny": [
       "Bash(curl:*)",
