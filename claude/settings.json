@@ -6,6 +6,7 @@
     "allow": [
       "Bash(diff:*)",
       "Bash(echo:*)",
+      // "Edit(*)",
       "Bash(rg:*)",
       "Bash(grep:*)",
       "Read(~/.zshrc)",
@@ -13,7 +14,7 @@
       "Bash(terraform plan:*)",
       "Bash(gh workflow view:*)",
       "Bash(gh workflow list:*)",
-      "Bash(find:*)",
+      "Bash(safe_find:*)",
       "Bash(ls:*)",
       "Bash(mkdir:*)",
       "Bash(git status:*)",
