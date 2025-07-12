@@ -10,7 +10,6 @@
       "Bash(grep:*)",
       "Read(~/.zshrc)",
       "Fetch(https://*)",
-      "Bash(terraform plan:*)",
       "Bash(gh workflow view:*)",
       "Bash(gh workflow list:*)",
       "Bash(safe_find:*)",
