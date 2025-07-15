@@ -14,7 +14,7 @@ alias gcm "git_checkout_main"
 alias gui "lazygit"
 alias gp "git push --set-upstream origin (git branch --show-current)"
 alias ga "git add --all; git diff --staged --stat;"
-alias gac 'c commit'
+alias gac 'git -C (git rev-parse --show-toplevel) add .;oco --yes'
 # Git Auto Commit Settings
 set -gx FINE_TUNE_PARAMS '{"temperature": 0.7}'
 set -gx PROMPT_OVERRIDE "与えられたコード変更を調査・説明し、Conventional Commitsフォーマットでコミットメッセージを作成します。1行で簡潔に記述してください。日本語で記述してください。"
