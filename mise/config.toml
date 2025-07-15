@@ -8,5 +8,6 @@ terraform = "1.12.2"
 "npm:opencommit" ="1.0.2"
 "go:github.com/aquaproj/aqua/v2/cmd/aqua" = "latest"
 "aqua:astral-sh/uv" = "0.7.21"
+"aqua:cli/cli" = "2.75.1"
 [settings]
 experimental = true
