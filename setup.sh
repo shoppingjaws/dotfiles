@@ -70,4 +70,5 @@ link "$DOTFILES_DIR/hammerspoon/init.lua" "$TARGET_DIR/.hammerspoon/init.lua"
 # mise
 link "$DOTFILES_DIR/mise/config.toml" "$TARGET_DIR/.config/mise/config.toml"
 
+
 echo "Setup complete!"
