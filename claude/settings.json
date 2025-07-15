@@ -31,7 +31,6 @@
       "Bash(kustomize build:*)",
       "Bash(kubectl get:*)",
       "Bash(kubectl describe:*)",
-      "Fetch(*)",
       "List(*)",
       "Read(./*)",
       "Edit(./*)"
