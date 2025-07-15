@@ -1,7 +1,0 @@
-[tools]
-aqua = "latest"
-ghq = "latest"
-node = "22"
-terraform = "1.12.2"
-"npm:@anthropic-ai/claude-code" = "latest"
-"npm@opencommit" = "latest"

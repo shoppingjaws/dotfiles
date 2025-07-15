@@ -1,0 +1,12 @@
+[tools]
+ghq = "1.8.0"
+node = "22"
+go = "1.22.0"
+terraform = "1.12.2"
+"npm:@anthropic-ai/claude-code" = "latest"
+"npm:@modelcontextprotocol/server-filesystem" = "latest"
+"npm:opencommit" ="1.0.2"
+"go:github.com/aquaproj/aqua/v2/cmd/aqua" = "latest"
+"aqua:astral-sh/uv" = "0.7.21"
+[settings]
+experimental = true
