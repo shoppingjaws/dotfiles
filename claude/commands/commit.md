@@ -7,6 +7,10 @@ description: "Git Commit"
 
 Generate commit message and commit it
 
+# Rule
+- Do not use emoji.
+- Write concisely in one line.
+
 # Conventional commit
 Commit message must follow the Conventional commit style.
 
