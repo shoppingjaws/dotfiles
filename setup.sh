@@ -64,9 +64,6 @@ link_dir "$DOTFILES_DIR/wezterm" "$TARGET_DIR/.config/wezterm/"
 # claude
 link_dir "$DOTFILES_DIR/claude" "$TARGET_DIR/.claude"
 
-# aqua
-link "$DOTFILES_DIR/aqua/aqua.yaml" "$TARGET_DIR/.config/aquaproj-aqua/aqua.yaml"
-
 # hammerspoon
 link "$DOTFILES_DIR/hammerspoon/init.lua" "$TARGET_DIR/.hammerspoon/init.lua"
 
