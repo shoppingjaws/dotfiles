@@ -68,6 +68,9 @@ link_dir "$DOTFILES_DIR/claude/commands" "$TARGET_DIR/.claude/commands" "*.md"
 # hammerspoon
 link "$DOTFILES_DIR/hammerspoon/init.lua" "$TARGET_DIR/.hammerspoon/init.lua"
 
+# aqua
+link "$DOTFILES_DIR/aqua/aqua.yaml" "$TARGET_DIR/.config/aqua/aqua.yaml"
+
 # mise
 link "$DOTFILES_DIR/mise/config.toml" "$TARGET_DIR/.config/mise/config.toml"
 

@@ -1,6 +1,8 @@
 {
   "includeCoAuthoredBy":false,
-  "env": {},
+  "env": {
+    "AWS_REGION": "ap-northeast-1"
+  },
   "permissions": {
     "allow": [
       "Bash(diff:*)",
