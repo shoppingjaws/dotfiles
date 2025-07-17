@@ -8,7 +8,7 @@
       "Bash(rg:*)",
       "Bash(grep:*)",
       "Read(~/.zshrc)",
-      "Fetch(https://*)",
+      "Fetch(*)",
       "Bash(gh workflow view:*)",
       "Bash(gh workflow list:*)",
       "Bash(safe_find:*)",

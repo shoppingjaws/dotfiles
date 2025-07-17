@@ -32,7 +32,7 @@ alias dps "docker ps"
 alias kz "kustomize"
 
 # claude
-alias c "env SHELL=/bin/bash claude"
+alias c "env claude"
 
 # nix
 alias nix-rebuild "sudo nix run --extra-experimental-features 'nix-command flakes' nix-darwin/master#darwin-rebuild -- switch --impure --flake $(ghq root)/github.com/shoppingjaws/dotfiles/flake#darwin"
