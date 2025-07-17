@@ -14,8 +14,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working across 
 - PR titles should be concise and clearly describe the changes made
 - For PR templates, write 'NA' for any sections you don't understand
 
+## Command Guidelines
+
+- Do not use find command, use safe_find instead.(safe_find is not allowed to use -exec option) when file searching
+- Do not use Fetch tool when fetch content from <https://github.com> , use gh command instead.
+
 ## Task Guidelines
 
 - When creating scripts for temporary file operations or repetitive tasks, it is recommended to write them in Deno.
-- Do not use find command, use safe_find instead.(safe_find is not allowed to use -exec option) when file searching
-- Use gh command when Fetch from https://github.com
