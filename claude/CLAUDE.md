@@ -18,3 +18,4 @@ This file provides guidance to Claude Code (claude.ai/code) when working across 
 
 - When creating scripts for temporary file operations or repetitive tasks, it is recommended to write them in Deno.
 - Do not use find command, use safe_find instead.(safe_find is not allowed to use -exec option) when file searching
+- Use gh command when accessing github.com
