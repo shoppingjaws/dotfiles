@@ -5,6 +5,8 @@
   },
   "permissions": {
     "allow": [
+      "Bash(safe_find:*)",
+      "Bash(safe_cd:*)",
       "Bash(diff:*)",
       "Bash(echo:*)",
       "Bash(rg:*)",
@@ -44,6 +46,8 @@
       "Edit(./*)"
     ],
     "deny": [
+      "Bash(cd:*)",
+      "Bash(find:*)",
       "Bash(curl:*)",
       "Bash(rm -rf /)",
       "Bash(rm -rf ~)",

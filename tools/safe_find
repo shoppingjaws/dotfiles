@@ -1,0 +1,33 @@
+#!/usr/bin/env bun
+
+import { $ } from "bun";
+
+const args = Bun.argv.slice(2);
+
+// Check for -exec in arguments
+const hasExec = args.some(arg => {
+  // Check for -exec, --exec, or any variation
+  if (/^-+exec/.test(arg)) return true;
+  // Check if argument contains -exec anywhere
+  if (arg.includes("-exec")) return true;
+  return false;
+});
+
+// Also check the joined string for potential bypasses
+const argsString = args.join(" ");
+if (argsString.includes("-exec")) {
+  console.error("Error: do not allowed to use -exec");
+  process.exit(1);
+}
+
+if (hasExec) {
+  console.error("Error: do not allowed to use -exec");
+  process.exit(1);
+}
+
+// Run find command with the provided arguments
+try {
+  await $`find ${args}`;
+} catch (error) {
+  process.exit(1);
+}

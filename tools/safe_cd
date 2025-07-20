@@ -1,0 +1,39 @@
+#!/usr/bin/env bun
+
+import { $ } from "bun";
+import { resolve } from "path";
+
+const args = Bun.argv.slice(2);
+const targetDir = args[0];
+
+if (!targetDir) {
+  console.error("Error: No directory specified");
+  process.exit(1);
+}
+
+const currentDir = process.cwd();
+const targetAbsPath = resolve(currentDir, targetDir);
+
+// Check if target is under current directory
+if (!targetAbsPath.startsWith(currentDir + "/")) {
+  console.error("Error: Can only cd to subdirectories of current directory");
+  console.error(`Current: ${currentDir}`);
+  console.error(`Target: ${targetAbsPath}`);
+  process.exit(1);
+}
+
+// Check if directory exists
+try {
+  const stat = await Bun.file(targetAbsPath).exists();
+  if (!stat) {
+    console.error(`Error: Directory does not exist: ${targetDir}`);
+    process.exit(1);
+  }
+} catch (error) {
+  console.error(`Error: Directory does not exist: ${targetDir}`);
+  process.exit(1);
+}
+
+// Since we can't actually change the parent shell's directory from a subprocess,
+// we'll output the validated path for the shell to use
+console.log(targetAbsPath);

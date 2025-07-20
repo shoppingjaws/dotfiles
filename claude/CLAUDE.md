@@ -16,8 +16,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working across 
 
 ## Command Guidelines
 
-- Do not use find command, use safe_find instead.(safe_find is not allowed to use -exec option) when file searching
-- Do not use Fetch tool when fetch content from <https://github.com> , use gh command instead.
+- Use safe_find instead of find command (safe_find is not allowed to use -exec option) when file searching
+- Use gh command instead of Fetch tool when fetch content from <https://github.com>
+- Use safe_cd instead of cd to restrict directory changes to subdirectories only
+- Use git_root to navigate to the git repository root directory
 
 ## Task Guidelines
 
