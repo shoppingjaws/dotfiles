@@ -42,8 +42,8 @@
       "Bash(kubectl get:*)",
       "Bash(kubectl describe:*)",
       "List(*)",
-      "Read(./*)",
-      "Edit(./*)"
+      "Edit(*)",
+      "Read(*)"
     ],
     "deny": [
       "Bash(cd:*)",
