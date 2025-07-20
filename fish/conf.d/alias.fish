@@ -32,6 +32,7 @@ alias dps "docker ps"
 alias kz "kustomize"
 
 # claude
+# alias c "env claude --mcp-config ~/.claude/mcp.json"
 alias c "env claude"
 
 # nix

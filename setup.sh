@@ -74,5 +74,10 @@ link "$DOTFILES_DIR/aqua/aqua.yaml" "$TARGET_DIR/.config/aqua/aqua.yaml"
 # mise
 link "$DOTFILES_DIR/mise/config.toml" "$TARGET_DIR/.config/mise/config.toml"
 
+# tools
+link_dir "$DOTFILES_DIR/tools" "$TARGET_DIR/.config/tools"
+
+# claude code mcp
+
 
 echo "Setup complete!"

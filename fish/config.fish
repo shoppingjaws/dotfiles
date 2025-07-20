@@ -28,7 +28,7 @@ mise activate fish | source
 
 set -xg GIT_BRANCH_PREFIX "develop/"
 fish_add_path (npm prefix --location=global)/bin
-
+fish_add_path $XDG_CONFIG_HOME/.config/tools
 
 #==================
 # Extra configuration
