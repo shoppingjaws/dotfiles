@@ -1,12 +1,13 @@
 {
-  "includeCoAuthoredBy":false,
   "env": {
     "AWS_REGION": "ap-northeast-1"
   },
+  "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
       "Bash(safe_find:*)",
       "Bash(safe_cd:*)",
+      "Bash(git_root)",
       "Bash(diff:*)",
       "Bash(echo:*)",
       "Bash(rg:*)",
@@ -15,7 +16,6 @@
       "Fetch(*)",
       "Bash(gh workflow view:*)",
       "Bash(gh workflow list:*)",
-      "Bash(safe_find:*)",
       "Bash(ls:*)",
       "Bash(mkdir:*)",
       "Bash(git status:*)",
