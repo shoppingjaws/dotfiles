@@ -1,4 +1,6 @@
 registries:
 - type: standard
   ref: v4.155.1 # renovate: depName=aquaproj/aqua-registry
-packages: []
+packages:
+- name: direnv/direnv@v2.37.1
+
