@@ -17,6 +17,7 @@
       "Bash(gh workflow view:*)",
       "Bash(gh workflow list:*)",
       "Bash(ls:*)",
+      "Bash(direnv allow)",
       "Bash(mkdir:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",

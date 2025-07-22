@@ -23,6 +23,9 @@ fish_add_path /Applications/WezTerm.app/Contents/MacOS
 # fisher
 fish_add_path $__fish_config_dir/fisherw
 
+# direnv
+eval (direnv hook fish)
+
 # mise
 mise activate fish | source
 
