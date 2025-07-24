@@ -15,6 +15,7 @@ bun = "1.2.19"
 "aqua:junegunn/fzf" = "0.64.0"
 "aqua:cli/cli" = "2.75.1"
 "aqua:aws/aws-cli" = "2.27.53"
+"aqua:neovim/neovim" = "0.11.3"
 # MCP servers
 "pipx:awslabs.aws-documentation-mcp-server" = "latest"
 "pipx:awslabs.aws-pricing-mcp-server" = "1.0.3"
