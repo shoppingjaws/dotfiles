@@ -30,6 +30,15 @@ function _git_is_dirty
   echo (command git status -s --ignore-submodules=dirty 2> /dev/null)
 end
 
+function _is_git_root
+  # Check if current directory is a git repository root
+  if test -d .git -o -f .git
+    echo "true"
+  else
+    echo ""
+  end
+end
+
 function __git_status
   if [ (_git_branch_name) ]
     set -l git_branch (_git_branch_name)
@@ -41,6 +50,11 @@ function __git_status
     end
 
     echo -n (set_color yellow)$git_info (set_color normal)
+    
+    # Show root symbol if in git root directory
+    if [ (_is_git_root) ]
+      echo -n (set_color magenta) " " (set_color normal)
+    end
   end
 end
 

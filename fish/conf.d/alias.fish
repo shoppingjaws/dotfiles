@@ -20,7 +20,7 @@ set -gx FINE_TUNE_PARAMS '{"temperature": 0.7}'
 set -gx PROMPT_OVERRIDE "与えられたコード変更を調査・説明し、Conventional Commitsフォーマットでコミットメッセージを作成します。1行で簡潔に記述してください。日本語で記述してください。"
 alias gwj "git worktree_jump"
 alias ghpr "gh pr view --web"
-alias vim = "nvim"
+alias vim "nvim"
 
 # cloud native tools
 alias kb "kubectl"
