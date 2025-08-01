@@ -28,6 +28,7 @@
       "Bash(gh pr view:*)",
       "Bash(gh pr list:*)",
       "Bash(gh pr diff:*)",
+      "Bash(gh pr checks:*)",
       "Bash(gh variable:*)",
       "Bash(gh secret list:*)",
       "Bash(gh project view:*)",
