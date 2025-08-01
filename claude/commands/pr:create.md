@@ -13,3 +13,4 @@ description: "create or update PR"
 - Make sure to always create Pull Requests as Draft.
 - must follow the style of @.github/PULL_REQUEST_TEMPLATE.md
 - don't write based on speculation.
+- Output Pull Request URL only

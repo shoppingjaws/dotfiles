@@ -33,6 +33,9 @@ fish_add_path $XDG_CONFIG_HOME/tools
 # direnv
 eval (direnv hook fish)
 
+# claude code
+
+set -gx CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR "1"
 
 #==================
 # Extra configuration
