@@ -23,15 +23,16 @@ fish_add_path /Applications/WezTerm.app/Contents/MacOS
 # fisher
 fish_add_path $__fish_config_dir/fisherw
 
-# direnv
-eval (direnv hook fish)
-
 # mise
 mise activate fish | source
 
 set -xg GIT_BRANCH_PREFIX "develop/"
 fish_add_path (npm prefix --location=global)/bin
 fish_add_path $XDG_CONFIG_HOME/tools
+
+# direnv
+eval (direnv hook fish)
+
 
 #==================
 # Extra configuration
