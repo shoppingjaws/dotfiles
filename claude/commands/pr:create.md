@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash(gh pr create:*), Bash(gh pr view:*)", Bash(gh pr edit:*), Bash(git log:*)
+allowed-tools: Bash(gh pr create:*), Bash(gh pr view:*), Bash(gh pr edit:*), Bash(git log:*),Bash(git push -u origin HEAD),Bash(git add:*),Bash(git commit:*)
 description: "create or update PR"
 ---
 

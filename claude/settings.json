@@ -122,8 +122,5 @@
       "Write(/etc/shadow)",
       "Write(/etc/sudoers)"
     ]
-  },
-  "feedbackSurveyState": {
-    "lastShownTime": 1754000509376
   }
 }
