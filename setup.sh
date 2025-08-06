@@ -78,6 +78,7 @@ link "$DOTFILES_DIR/mise/config.toml" "$TARGET_DIR/.config/mise/config.toml"
 link_dir "$DOTFILES_DIR/tools" "$TARGET_DIR/.config/tools"
 
 # claude code mcp
-
+claude mcp add -s user terraform -- docker run -i --rm hashicorp/terraform-mcp-server
+claude mcp add -s user aws-documentation -- awslabs.aws-documentation-mcp-server
 
 echo "Setup complete!"
