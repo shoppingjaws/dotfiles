@@ -46,7 +46,16 @@
       "Bash(kubectl describe:*)",
       "List(*)",
       "Edit(*)",
-      "Read(*)"
+      "Read(*)",
+      "mcp__aws-documentation__recommend",
+      "mcp__aws-documentation__read_documentation",
+      "mcp__aws-documentation__search_documentation",
+      "mcp__terraform__getProviderDocs",
+      "mcp__terraform__moduleDetails",
+      "mcp__terraform__policyDetails",
+      "mcp__terraform__resolveProviderDocID",
+      "mcp__terraform__searchModules",
+      "mcp__terraform__searchPolicies"
     ],
     "deny": [
       "Bash(cd:*)",
