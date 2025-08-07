@@ -17,3 +17,5 @@ description: "investigate CI failure causes"
 - Provide clear explanation of failure causes
 - Suggest concrete steps to fix the issues
 - Don't speculate without evidence from CI logs
+- skip the failure that does not related to this PR
+- Try to avoid using the ⁠gh api command if possible
