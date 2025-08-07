@@ -30,6 +30,11 @@ set -xg GIT_BRANCH_PREFIX "develop/"
 fish_add_path (npm prefix --location=global)/bin
 fish_add_path $XDG_CONFIG_HOME/tools
 
+# 1password
+if test -f "$HOME/.config/op/plugins.sh"
+    source ~/.config/op/plugins.sh
+end
+
 # claude code
 
 set -gx CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR "1"
