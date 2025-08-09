@@ -31,8 +31,10 @@ fish_add_path (npm prefix --location=global)/bin
 fish_add_path $XDG_CONFIG_HOME/tools
 
 # claude code
-
 set -gx CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR "1"
+
+# aqua
+set -gx AQUA_CONFIG_DIR "$HOME/aquaproj-config/aqua.yaml"
 
 #==================
 # Extra configuration
