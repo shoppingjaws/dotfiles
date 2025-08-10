@@ -132,5 +132,9 @@
       "Write(/etc/shadow)",
       "Write(/etc/sudoers)"
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "ccusage statusline"
   }
 }
