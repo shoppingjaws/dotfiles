@@ -85,6 +85,8 @@ link_dir "$DOTFILES_DIR/tools" "$TARGET_DIR/.config/tools"
 # nvim
 link_dir "$DOTFILES_DIR/nvim" "$TARGET_DIR/.config/nvim"
 
+# karabiner
+bun run karabiner/karabiner.ts
 
 # claude code mcp
 claude mcp add -s user terraform -- docker run -i --rm hashicorp/terraform-mcp-server

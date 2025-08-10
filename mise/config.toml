@@ -37,4 +37,7 @@ fd = "10.2.0"
 [settings]
 experimental = true
 pipx_uvx = true
+[tasks.mise_setup]
+description = "Setup mise tools"
+run = "bun run karabiner/karabiner.ts"
 
