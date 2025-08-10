@@ -31,22 +31,28 @@ link_dir() {
         
         # Remove existing symlinks that match the pattern
         if [ -d "$target_dir" ]; then
-            for link in "$target_dir"/$pattern; do
+            # Handle both regular and hidden files
+            shopt -s nullglob dotglob
+            for link in "$target_dir"/$pattern "$target_dir"/.$pattern; do
                 if [ -L "$link" ]; then
                     rm -f "$link"
                     echo "Removed existing symlink: $link"
                 fi
             done
+            shopt -u nullglob dotglob
         fi
         
         # Create new symlinks
-        for file in "$source_dir"/$pattern; do
-            if [ -f "$file" ]; then
-                local filename=$(basename "$file")
-                ln -sf "$file" "$target_dir/$filename"
-                echo "Created symlink: $target_dir/$filename -> $file"
+        # Enable dotglob to include hidden files
+        shopt -s nullglob dotglob
+        for item in "$source_dir"/$pattern; do
+            if [ -f "$item" ] || [ -d "$item" ]; then
+                local itemname=$(basename "$item")
+                ln -sf "$item" "$target_dir/$itemname"
+                echo "Created symlink: $target_dir/$itemname -> $item"
             fi
         done
+        shopt -u nullglob dotglob
     else
         echo "Source directory does not exist: $source_dir"
     fi
@@ -76,6 +82,9 @@ link "$DOTFILES_DIR/mise/config.toml" "$TARGET_DIR/.config/mise/config.toml"
 
 # tools
 link_dir "$DOTFILES_DIR/tools" "$TARGET_DIR/.config/tools"
+# nvim
+link_dir "$DOTFILES_DIR/nvim" "$TARGET_DIR/.config/nvim"
+
 
 # claude code mcp
 claude mcp add -s user terraform -- docker run -i --rm hashicorp/terraform-mcp-server
