@@ -11,6 +11,7 @@
       "Bash(diff:*)",
       "Bash(echo:*)",
       "Bash(rg:*)",
+      "Bash(cd:*)",
       "Bash(grep:*)",
       "Read(~/.zshrc)",
       "Fetch(https://*)",
@@ -57,7 +58,6 @@
       "mcp__terraform__searchPolicies"
     ],
     "deny": [
-      "Bash(cd:*)",
       "Bash(find:*)",
       "Bash(curl:*)",
       "Bash(rm -rf /)",
