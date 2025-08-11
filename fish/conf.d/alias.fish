@@ -21,6 +21,7 @@ set -gx PROMPT_OVERRIDE "与えられたコード変更を調査・説明し、C
 alias gwj "git worktree_jump"
 alias ghpr "gh pr view --web"
 alias vim "nvim"
+alias cr "cd (git rev-parse --show-toplevel)"
 
 # cloud native tools
 alias kb "kubectl"
