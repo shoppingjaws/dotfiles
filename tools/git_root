@@ -1,7 +1,6 @@
 #!/usr/bin/env bun
 
 import { $ } from "bun";
-import { chdir } from "node:process";
 
 async function gitRoot() {
   try {
@@ -12,9 +11,8 @@ async function gitRoot() {
     const result = await $`git rev-parse --show-toplevel`.quiet();
     const gitRootPath = result.stdout.toString().trim();
 
-    // Change to git root directory
-    chdir(gitRootPath);
-    console.log(gitRootPath);
+    // Output cd command for shell to execute
+    console.log(`cd "${gitRootPath}"`);
   } catch (error) {
     console.error("Error: Not in a git repository");
     process.exit(1);
