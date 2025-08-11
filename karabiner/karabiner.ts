@@ -1,8 +1,8 @@
 #!/usr/bin/env bun
-import { hyperLayer, ifVar, layer, map, modifierLayer, rule, toSetVar, writeToProfile } from 'karabiner.ts';
+import { hyperLayer, ifApp, ifVar, layer, map, modifierLayer, rule, toSetVar, withCondition, writeToProfile } from 'karabiner.ts';
 
 writeToProfile('Default profile', [
-    rule("ctrl_layer").manipulators([
+    rule("layer1").manipulators([
         map("caps_lock").to("left_control"),
         map("left_control").to(toSetVar("layer", 1)).toAfterKeyUp(toSetVar("layer", 0)),
 
@@ -22,5 +22,5 @@ writeToProfile('Default profile', [
         map("s","optionalAny").to("delete_or_backspace").condition(ifVar("layer", 1)),
 
         map("c").to("c","left_control").condition(ifVar("layer", 1)),
-    ]),
+    ])
     ]);
