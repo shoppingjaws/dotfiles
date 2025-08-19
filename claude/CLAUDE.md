@@ -21,6 +21,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working across 
 - Use safe_cd instead of cd to restrict directory changes to subdirectories only
 - Use git_root to navigate to the git repository root directory
 - Use .yaml instead of .yml extension when creating nwe YAML file
+- Use bin/kustomize for Kustomize operations (allowed command)
 
 
 ## Task Guidelines

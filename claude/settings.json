@@ -44,6 +44,7 @@
       "Bash(kustomize build:*)",
       "Bash(kubectl get:*)",
       "Bash(kubectl describe:*)",
+      "Bash(kubectl wait:*)",
       "List(*)",
       "Edit(*)",
       "Read(*)",
@@ -69,6 +70,8 @@
       "Bash(sudo fdisk:*)",
       "Bash(sudo mount:*)",
       "Bash(sudo umount:*)",
+      "Bash(kubectl apply:*)",
+      "Bash(terraform apply:*)",
       "Bash(dd:*)",
       "Bash(mkfs:*)",
       "Bash(fdisk:*)",
@@ -136,5 +139,7 @@
   "statusLine": {
     "type": "command",
     "command": "ccusage statusline"
+  },
+  "hooks": {
   }
 }

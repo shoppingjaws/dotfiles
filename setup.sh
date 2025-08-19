@@ -71,6 +71,7 @@ link_dir "$DOTFILES_DIR/wezterm" "$TARGET_DIR/.config/wezterm/"
 link_dir "$DOTFILES_DIR/claude" "$TARGET_DIR/.claude"
 link_dir "$DOTFILES_DIR/claude/commands" "$TARGET_DIR/.claude/commands" "*.md"
 link_dir "$DOTFILES_DIR/claude/agents" "$TARGET_DIR/.claude/agents" "*.md"
+link_dir "$DOTFILES_DIR/claude/hooks" "$TARGET_DIR/.claude/hooks"
 # hammerspoon
 link "$DOTFILES_DIR/hammerspoon/init.lua" "$TARGET_DIR/.hammerspoon/init.lua"
 

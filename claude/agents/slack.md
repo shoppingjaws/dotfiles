@@ -1,1 +1,0 @@
-/Users/shinyana.kamura/ghq/github.com/shoppingjaws/dotfiles/claude/agents/slack.md
