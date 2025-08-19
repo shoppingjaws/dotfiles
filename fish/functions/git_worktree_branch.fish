@@ -36,6 +36,19 @@ function git_worktree_branch
         return 0
     end
     
+    # Check if branch is already checked out in another worktree
+    set -l existing_worktree (git worktree list --porcelain | grep "branch refs/heads/$branch_name" -B 2 | grep "^worktree" | cut -d' ' -f2)
+    if test -n "$existing_worktree"
+        echo "Branch '$branch_name' is already checked out at: $existing_worktree"
+        echo "Switching to existing worktree"
+        cd $existing_worktree
+        return 0
+    end
+    
+    # Pull latest changes from remote
+    echo "Updating repository..."
+    git pull --quiet
+    
     # Check if remote branch exists
     if git ls-remote --heads origin $branch_name | grep -q $branch_name
         echo "Creating worktree from remote branch"
