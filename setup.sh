@@ -58,6 +58,108 @@ link_dir() {
     fi
 }
 
+# Function to sync directory with .dotignore support
+sync_with_ignore() {
+    local source_dir="$1"
+    local target_dir="$2"
+    local dotignore_file="$source_dir/.dotignore"
+    
+    if [ ! -d "$source_dir" ]; then
+        echo "Source directory does not exist: $source_dir"
+        return 1
+    fi
+    
+    mkdir -p "$target_dir"
+    
+    # Read ignore patterns if .dotignore exists
+    local ignore_patterns=()
+    if [ -f "$dotignore_file" ]; then
+        while IFS= read -r line || [ -n "$line" ]; do
+            # Skip empty lines and comments
+            if [[ -n "$line" && ! "$line" =~ ^[[:space:]]*# ]]; then
+                # Remove leading/trailing whitespace
+                line=$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+                if [ -n "$line" ]; then
+                    ignore_patterns+=("$line")
+                fi
+            fi
+        done < "$dotignore_file"
+    fi
+    
+    # Function to check if item should be ignored
+    should_ignore() {
+        local item="$1"
+        local item_name=$(basename "$item")
+        
+        for pattern in "${ignore_patterns[@]}"; do
+            # Check if pattern matches the basename
+            if [[ "$item_name" == $pattern ]] || [[ "$item_name/" == $pattern ]]; then
+                return 0
+            fi
+            # Check glob patterns
+            if [[ "$item_name" == $pattern ]] || [[ "$(basename "$item")/" == $pattern ]]; then
+                return 0
+            fi
+            # Check if item matches pattern with wildcards
+            case "$item_name" in
+                $pattern) return 0 ;;
+            esac
+        done
+        return 1
+    }
+    
+    # Remove existing symlinks that might be outdated
+    if [ -d "$target_dir" ]; then
+        shopt -s nullglob dotglob
+        for link in "$target_dir"/*; do
+            if [ -L "$link" ]; then
+                local link_target=$(readlink "$link")
+                # Remove if it points to our source directory
+                if [[ "$link_target" == "$source_dir"/* ]]; then
+                    rm -f "$link"
+                    echo "Removed existing symlink: $link"
+                fi
+            fi
+        done
+        shopt -u nullglob dotglob
+    fi
+    # Create symlinks for non-ignored items
+    shopt -s nullglob dotglob
+    for item in "$source_dir"/*; do
+        local item_name=$(basename "$item")
+        # Skip .dotignore file itself
+        if [ "$item_name" = ".dotignore" ]; then
+            continue
+        fi
+        # Check if item should be ignored
+        if should_ignore "$item"; then
+            echo "Ignoring: $item_name"
+            continue
+        fi
+        
+        # If item is a directory, recursively sync its contents
+        if [ -d "$item" ]; then
+            echo "Syncing directory contents: $item_name"
+            mkdir -p "$target_dir/$item_name"
+            # Recursively sync directory contents
+            shopt -s nullglob dotglob
+            for subitem in "$item"/*; do
+                if [ -e "$subitem" ]; then
+                    local subitem_name=$(basename "$subitem")
+                    ln -sf "$subitem" "$target_dir/$item_name/$subitem_name"
+                    echo "Created symlink: $target_dir/$item_name/$subitem_name -> $subitem"
+                fi
+            done
+            shopt -u nullglob dotglob
+        else
+            # Create symlink for files
+            ln -sf "$item" "$target_dir/$item_name"
+            echo "Created symlink: $target_dir/$item_name -> $item"
+        fi
+    done
+    shopt -u nullglob dotglob
+}
+
 
 # fish
 link "$DOTFILES_DIR/fish/config.fish" "$TARGET_DIR/.config/fish/config.fish"
@@ -67,11 +169,8 @@ link_dir "$DOTFILES_DIR/fish/functions" "$TARGET_DIR/.config/fish/functions" "*.
 # wezterm
 link_dir "$DOTFILES_DIR/wezterm" "$TARGET_DIR/.config/wezterm/"
 
-# claude
-link_dir "$DOTFILES_DIR/claude" "$TARGET_DIR/.claude"
-link_dir "$DOTFILES_DIR/claude/commands" "$TARGET_DIR/.claude/commands" "*.md"
-link_dir "$DOTFILES_DIR/claude/agents" "$TARGET_DIR/.claude/agents" "*.md"
-link_dir "$DOTFILES_DIR/claude/hooks" "$TARGET_DIR/.claude/hooks"
+# claude - sync all files with .dotignore support
+sync_with_ignore "$DOTFILES_DIR/claude" "$TARGET_DIR/.claude"
 # hammerspoon
 link "$DOTFILES_DIR/hammerspoon/init.lua" "$TARGET_DIR/.hammerspoon/init.lua"
 

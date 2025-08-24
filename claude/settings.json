@@ -138,10 +138,21 @@
       "Write(/etc/sudoers)"
     ]
   },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Codeのタスクが完了しました\"'"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "ccusage statusline"
-  },
-  "hooks": {
   }
 }

@@ -1,0 +1,15 @@
+# Runtime/cache directories
+ide/
+projects/
+shell-snapshots/
+statsig/
+todos/
+
+# Lock files
+*.lock
+
+# Temporary files
+*.tmp
+*.swp
+*~
+.DS_Store
