@@ -52,34 +52,16 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   local cwd = pane.current_working_dir
   if cwd then
     local path = cwd.file_path
-    
-    -- gitリポジトリのルートディレクトリを探す
-    local git_root = nil
-    local current_path = path
-    
-    while current_path and current_path ~= "/" do
-      local git_dir = current_path .. "/.git"
-      local file = io.open(git_dir, "r")
-      if file then
-        file:close()
-        git_root = current_path
-        break
-      else
-        -- .gitディレクトリが存在しない場合は親ディレクトリをチェック
-        current_path = current_path:match("(.*)/.+")
-      end
-    end
-    
-    local basename
-    if git_root then
-      -- gitリポジトリのルートディレクトリ名を取得
-      basename = git_root:match("([^/]+)/?$") or git_root
-    else
+    local utils = require("utils")
+    -- gitリポジトリのルートディレクトリ名を取得
+    local basename = utils.get_git_root_dirname(path)
+
+    if not basename then
       -- gitリポジトリでない場合はカレントディレクトリ名
       local display_path = path:gsub("^" .. os.getenv("HOME"), "~")
       basename = display_path:match("([^/]+)/?$") or display_path
     end
-    
+
     -- 32文字に固定（パディングで調整）
     local title = " " .. basename .. " "
     if #title < 32 then
@@ -92,29 +74,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
       { Text = title },
     }
   end
-  
   return tab.active_pane.title
 end)
 
-
-local function is_claude(pane)
-  local process = pane:get_foreground_process_info()
-  if not process or not process.argv then
-    return false
-  end
-  -- 引数に"claude"が含まれているかチェック
-  for _, arg in ipairs(process.argv) do
-    if arg:find("claude") then
-      return true
-    end
-  end
-  return false
-end
-
-wezterm.on("bell", function(window, pane)
-  if is_claude(pane) then
-    window:toast_notification("Claude Code", "Task completed", nil, 4000)
-  end
-end)
 
 return config
