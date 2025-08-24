@@ -15,6 +15,7 @@
       "Read(~/.zshrc)",
       "WebFetch(*)",
       "Fetch(*)",
+      "WebSearch(*)",
       "Bash(gh workflow view:*)",
       "Bash(gh workflow list:*)",
       "Bash(ls:*)",

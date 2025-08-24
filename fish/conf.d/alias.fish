@@ -40,3 +40,4 @@ alias z "z -r" # zは最も頻繁にアクセスするディレクトリに飛�
 alias sl "ls"
 alias ls "eza --icons=always -alhg"
 alias krbn "karabiner_cli"
+alias co "code ."
