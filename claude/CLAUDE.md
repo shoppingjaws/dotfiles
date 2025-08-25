@@ -22,7 +22,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working across 
 - Use git_root to navigate to the git repository root directory
 - Use .yaml instead of .yml extension when creating nwe YAML file
 - Use bin/kustomize for Kustomize operations (allowed command)
-
+- Use kzdiff to see changes of kustomize build result (see @docs/kzdiff.md )
 
 ## Task Guidelines
 
