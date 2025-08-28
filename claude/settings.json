@@ -46,6 +46,7 @@
       "Bash(kubectl get:*)",
       "Bash(kubectl describe:*)",
       "Bash(kubectl wait:*)",
+      "Bash(kubectl logs:*)",
       "List(*)",
       "Edit(*)",
       "Read(*)",
