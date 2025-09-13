@@ -129,6 +129,8 @@ async function syncDirectory(sourceDir: string, targetDir: string, options: Sync
   const localIgnorePatterns = await loadDotignore(sourceDir);
   const allIgnorePatterns = [...(options.ignorePatterns || []), ...localIgnorePatterns];
 
+  // Only process files that exist in the source directory
+  // Files in target directory that don't exist in source are ignored
   const entries = await fs.readdir(sourceDir, { withFileTypes: true });
 
   for (const entry of entries) {
