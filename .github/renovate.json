@@ -15,8 +15,14 @@
     {
       "description": "Auto-merge mise updates after 7 days",
       "matchFileNames": ["mise/config.toml"],
-      "matchCurrentAge": "7days",
+      "matchCurrentAge": "7 days",
       "automerge": true
+    },
+    {
+      "description": "Auto-merge node updates",
+      "matchDatasources": ["package.json"],
+      "automerge": true,
+      "matchCurrentAge": "7 days"
     }
   ],
   "extends": ["schedule:automergeDaily", ":dependencyDashboard"],
@@ -24,8 +30,6 @@
     "aqua:slack.com/slack-cli",
     "kzdiff",
     "opencommit",
-    "ccusage",
-    "awslabs.aws-documentation-mcp-server",
-    "awslabs.aws-pricing-mcp-server"
+    "ccusage"
   ]
 }
