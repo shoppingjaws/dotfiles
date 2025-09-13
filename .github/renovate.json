@@ -1,54 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
-  "timezone": "Asia/Tokyo",
-  "schedule": ["after 2am and before 7am every weekday", "after 2am and before 7am every weekend"],
-  "labels": ["dependencies", "renovate"],
-  "automerge": false,
-  "packageRules": [
-    {
-      "description": "Automerge patch updates",
-      "matchUpdateTypes": ["patch"],
-      "automerge": true
-    }
-  ],
-  "customManagers": [
-    {
-      "description": "Update mise tools in config.toml",
-      "customType": "regex",
-      "fileMatch": ["^mise/config\\.toml$"],
-      "matchStrings": [
-        "(?<depName>[\\w-]+)\\s*=\\s*\"(?<currentValue>[0-9.]+)\"",
-        "\"aqua:(?<depName>[\\w-]+/[\\w-]+)\"\\s*=\\s*\"(?<currentValue>[0-9.]+)\"",
-        "\"npm:(?<depName>@?[\\w/-]+)\"\\s*=\\s*\"(?<currentValue>[0-9.]+|latest)\"",
-        "\"pipx:(?<depName>[\\w.-]+)\"\\s*=\\s*\"(?<currentValue>[0-9.]+|latest)\"",
-        "\"go:(?<depName>[\\w./]+(?:/cmd/[\\w]+)?)\"\\s*=\\s*\"(?<currentValue>[0-9.]+|latest)\""
-      ],
-      "datasourceTemplate": "{{#if (containsString depName '/')}}github-releases{{else}}github-tags{{/if}}",
-      "depNameTemplate": "{{#if (containsString depName 'ghq')}}x-motemen/ghq{{else if (containsString depName 'node')}}nodejs/node{{else if (containsString depName 'go')}}golang/go{{else if (containsString depName 'terraform')}}hashicorp/terraform{{else if (containsString depName 'jq')}}jqlang/jq{{else if (containsString depName 'deno')}}denoland/deno{{else if (containsString depName 'bun')}}oven-sh/bun{{else if (containsString depName 'neovim')}}neovim/neovim{{else if (containsString depName 'lua')}}lua/lua{{else if (containsString depName 'ripgrep')}}BurntSushi/ripgrep{{else if (containsString depName 'fd')}}sharkdp/fd{{else if (containsString depName '1password')}}1password/cli{{else if (containsString depName 'slack-cli')}}slackapi/cli{{else if (containsString depName 'suzuki-shunsuke/tfmv')}}suzuki-shunsuke/tfmv{{else if (containsString depName 'suzuki-shunsuke/pinact')}}suzuki-shunsuke/pinact{{else if (containsString depName 'aquaproj/aqua')}}aquaproj/aqua{{else if (containsString depName 'checkov')}}bridgecrewio/checkov{{else if (containsString depName 'astral-sh/uv')}}astral-sh/uv{{else if (containsString depName 'junegunn/fzf')}}junegunn/fzf{{else if (containsString depName 'homeport/dyff')}}homeport/dyff{{else if (containsString depName 'cli/cli')}}cli/cli{{else if (containsString depName 'aws/aws-cli')}}aws/aws-cli{{else if (containsString depName 'tree-sitter/tree-sitter')}}tree-sitter/tree-sitter{{else}}{{depName}}{{/if}}",
-      "versioningTemplate": "{{#if (or (containsString depName 'node') (containsString depName 'go'))}}node{{else}}semver{{/if}}"
-    },
-    {
-      "description": "Update npm packages in mise config.toml",
-      "customType": "regex",
-      "fileMatch": ["^mise/config\\.toml$"],
-      "matchStrings": [
-        "\"npm:(?<depName>@?[\\w/-]+)\"\\s*=\\s*\"(?<currentValue>latest)\""
-      ],
-      "datasourceTemplate": "npm",
-      "versioningTemplate": "npm"
-    },
-    {
-      "description": "Update pipx packages in mise config.toml",
-      "customType": "regex",
-      "fileMatch": ["^mise/config\\.toml$"],
-      "matchStrings": [
-        "\"pipx:(?<depName>[\\w.-]+)\"\\s*=\\s*\"(?<currentValue>latest)\""
-      ],
-      "datasourceTemplate": "pypi",
-      "versioningTemplate": "pep440"
-    }
-  ],
-  "prConcurrentLimit": 10,
-  "prHourlyLimit": 5
+  "managerFilePatterns": [
+    "/(^|/)\\.?mise\\.toml$/",
+    "/(^|/)\\.?mise/config\\.toml$/"
+  ]
 }
