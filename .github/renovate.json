@@ -18,5 +18,6 @@
       "matchCurrentAge": "7days",
       "automerge": true
     }
-  ]
+  ],
+  "extends": ["schedule:automergeDaily", ":dependencyDashboard"]
 }
