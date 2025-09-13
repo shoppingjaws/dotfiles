@@ -31,5 +31,6 @@
   "dependencyDashboardApproval": true,
   "pinDigests": true,
   "addLabels": ["dependencies:renovate"],
-  "extends": ["schedule:automergeDaily", ":dependencyDashboard","config:best-practices"]
+  "extends": ["schedule:automergeDaily", ":dependencyDashboard","config:best-practices"],
+  "ignoreDeps": ["slack.com/slack-cli"]
 }
