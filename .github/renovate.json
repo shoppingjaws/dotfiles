@@ -27,6 +27,5 @@
   ],
   "extends": ["schedule:automergeDaily", ":dependencyDashboard"],
   "ignoreDeps": [
-    "aqua:slack.com/slack-cli"
   ]
 }
