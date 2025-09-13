@@ -1,3 +1,8 @@
+[settings]
+experimental = true
+pipx_uvx = true
+idiomatic_version_file_enable_tools = ["node"]
+lockfile = true
 [tools]
 ghq = "1.8.0"
 node = "22"
@@ -8,36 +13,34 @@ deno = "2.4.3"
 bun = "1.2.19"
 neovim = "0.11.3"
 lua = "5.1"
-ripgrep ="14.1.1"
+ripgrep = "14.1.1"
 fd = "10.2.0"
-"npm:@anthropic-ai/claude-code" = "latest"
+"npm:@anthropic-ai/claude-code" = "1.0.113"
 "aqua:1password/cli" = "2.31.1"
-"aqua:slack.com/slack-cli" ="3.5.2"
+"aqua:slack.com/slack-cli" = "3.5.2"
 "aqua:suzuki-shunsuke/tfmv" = "0.2.8"
-"npm:@modelcontextprotocol/server-filesystem" = "latest"
-"npm:@railway/cli" = "latest"
-"npm:kzdiff" = "latest"
-"npm:opencommit" ="1.0.2"
-"npm:@devcontainers/cli" = "latest"
-"npm:ccusage" = "latest"
-"npm:wrangler" = "latest"
-"aqua:suzuki-shunsuke/pinact" ="3.3.1"
-"go:github.com/aquaproj/aqua/v2/cmd/aqua" = "latest"
-"checkov" = "latest"
+"aqua:aws/aws-sam-cli" = "1.143.0"
+"npm:@railway/cli" = "4.6.1"
+"npm:kzdiff" = "1.6.1"
+"npm:opencommit" = "1.0.2"
+"npm:@devcontainers/cli" = "0.80.0"
+"npm:ccusage" = "16.2.4"
+"npm:wrangler" = "4.36.0"
+"aqua:suzuki-shunsuke/pinact" = "3.3.1"
+"go:github.com/aquaproj/aqua/v2/cmd/aqua" = "2.53.3"
+"go:github.com/syumai/sbx/cmd/sbx" = "0.0.5"
+"checkov" = "3.2.470"
 "aqua:astral-sh/uv" = "0.7.21"
 "aqua:junegunn/fzf" = "0.64.0"
 "aqua:homeport/dyff" = "1.10.2"
 "aqua:cli/cli" = "2.75.1"
 "aqua:aws/aws-cli" = "2.27.53"
 # MCP servers
-"pipx:awslabs.aws-documentation-mcp-server" = "latest"
+"pipx:awslabs.aws-documentation-mcp-server" = "1.1.7"
 "pipx:awslabs.aws-pricing-mcp-server" = "1.0.3"
 #nvim
-"npm:neovim" = "latest"
+"npm:neovim" = "5.4.0"
 "aqua:tree-sitter/tree-sitter" = "0.25.8"
-[settings]
-experimental = true
-pipx_uvx = true
 [tasks.mise_setup]
 description = "Setup mise tools"
 run = "bun run karabiner/karabiner.ts"

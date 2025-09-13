@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'mise/config.toml'
+      - '.github/workflows/ci.yaml'
+
+jobs:
+  test-mise:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install mise
+        run: |
+          curl https://mise.run | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Validate mise config
+        run: |
+          mise config --validate
+          mise list
+
+      - name: Install mise tools
+        run: |
+          cd mise
+          mise install --yes
+        env:
+          MISE_YES: 1
+
+      - name: Verify tools installation
+        run: |
+          mise list --installed
+          mise doctor
+
+  test-mise-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install mise
+        run: |
+          brew install mise
+
+      - name: Validate mise config
+        run: |
+          mise config --validate
+          mise list
+
+      - name: Install mise tools
+        run: |
+          cd mise
+          mise install --yes
+        env:
+          MISE_YES: 1
+
+      - name: Verify tools installation
+        run: |
+          mise list --installed
+          mise doctor
