@@ -39,4 +39,10 @@ bun run karabiner/karabiner.ts
 claude mcp add -s user terraform -- docker run -i --rm hashicorp/terraform-mcp-server
 claude mcp add -s user aws-documentation -- awslabs.aws-documentation-mcp-server
 
+# homebrew
+if [[ "$(uname)" == "Darwin" ]]; then
+  brew bundle --file="brew/Brewfile"
+fi
+
+
 echo "Setup complete!"
