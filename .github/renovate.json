@@ -32,5 +32,5 @@
   "pinDigests": true,
   "addLabels": ["dependencies:renovate"],
   "extends": ["schedule:automergeDaily", ":dependencyDashboard","config:best-practices"],
-  "ignoreDeps": ["slack.com/slack-cli"]
+  "ignoreDeps": ["aqua:slack.com/slack-cli"]
 }
