@@ -9,6 +9,7 @@ interface SyncOptions {
   force?: boolean;
   verbose?: boolean;
   dryRun?: boolean;
+  ignorePatterns?: string[];
 }
 
 async function createHardlink(source: string, target: string, options: SyncOptions): Promise<void> {
@@ -85,6 +86,35 @@ async function createHardlink(source: string, target: string, options: SyncOptio
   }
 }
 
+async function loadDotignore(dir: string): Promise<string[]> {
+  const fs = await import("fs/promises");
+  const dotignorePath = path.join(dir, ".dotignore");
+
+  try {
+    const content = await fs.readFile(dotignorePath, "utf-8");
+    return content
+      .split("\n")
+      .map(line => line.trim())
+      .filter(line => line && !line.startsWith("#"));
+  } catch {
+    return [];
+  }
+}
+
+function shouldIgnore(filename: string, ignorePatterns: string[]): boolean {
+  for (const pattern of ignorePatterns) {
+    // Simple pattern matching (supports exact match and wildcards)
+    if (pattern === filename) return true;
+
+    // Support basic glob patterns
+    if (pattern.includes("*")) {
+      const regex = new RegExp("^" + pattern.replace(/\*/g, ".*") + "$");
+      if (regex.test(filename)) return true;
+    }
+  }
+  return false;
+}
+
 async function syncDirectory(sourceDir: string, targetDir: string, options: SyncOptions): Promise<void> {
   const fs = await import("fs/promises");
 
@@ -95,15 +125,35 @@ async function syncDirectory(sourceDir: string, targetDir: string, options: Sync
     process.exit(1);
   }
 
+  // Load .dotignore patterns from the current source directory
+  const localIgnorePatterns = await loadDotignore(sourceDir);
+  const allIgnorePatterns = [...(options.ignorePatterns || []), ...localIgnorePatterns];
+
   const entries = await fs.readdir(sourceDir, { withFileTypes: true });
 
   for (const entry of entries) {
+    // Skip .dotignore file itself
+    if (entry.name === ".dotignore") {
+      if (options.verbose) {
+        console.log(`Skipping .dotignore file`);
+      }
+      continue;
+    }
+
+    // Check if file should be ignored
+    if (shouldIgnore(entry.name, allIgnorePatterns)) {
+      if (options.verbose) {
+        console.log(`Ignoring: ${entry.name} (matched .dotignore pattern)`);
+      }
+      continue;
+    }
+
     const sourcePath = path.join(sourceDir, entry.name);
     const targetPath = path.join(targetDir, entry.name);
 
     if (entry.isDirectory()) {
-      // Recursively sync subdirectories
-      await syncDirectory(sourcePath, targetPath, options);
+      // Pass down ignore patterns to subdirectories
+      await syncDirectory(sourcePath, targetPath, { ...options, ignorePatterns: allIgnorePatterns });
     } else if (entry.isFile()) {
       // Create hard link for files
       await createHardlink(sourcePath, targetPath, options);
@@ -139,12 +189,18 @@ async function main() {
 Usage: bun hardlink-sync.ts <source-dir> <target-dir> [options]
 
 Creates hard links from source directory to target directory.
+Respects .dotignore files in source directories to exclude specific files/patterns.
 
 Options:
   -f, --force      Force overwrite existing files/links
   -v, --verbose    Show detailed output
   --dry-run        Show what would be done without making changes
   -h, --help       Show this help message
+
+.dotignore format:
+  - One pattern per line
+  - Lines starting with # are comments
+  - Supports exact filename matches and wildcards (*)
 
 Example:
   bun hardlink-sync.ts ./fish ~/.config/fish --force --verbose
