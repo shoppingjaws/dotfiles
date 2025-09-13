@@ -1,7 +1,22 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "managerFilePatterns": [
-    "/(^|/)\\.?mise\\.toml$/",
-    "/(^|/)\\.?mise/config\\.toml$/"
+    "mise/config.toml",
+    "package.json"
+  ],
+  "timezone": "Asia/Tokyo",
+  "major": {
+    "automerge": false
+  },
+  "minimumReleaseAge": "14 days",
+  "packageRules": [
+    {
+      "description": "Auto-merge mise updates after 7 days",
+      "matchPackageNames": [
+        "mise"
+      ],
+      "matchCurrentAge": "7days",
+      "automerge": true
+    }
   ]
 }
