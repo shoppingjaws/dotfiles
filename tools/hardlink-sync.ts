@@ -1,6 +1,7 @@
-#!/usr/bin/env -S deno run --allow-read --allow-write
+#!/usr/bin/env bun
 
-import * as path from "https://deno.land/std@0.224.0/path/mod.ts";
+import * as path from "path";
+import { parseArgs } from "util";
 
 interface SyncOptions {
   source: string;
@@ -19,19 +20,19 @@ async function createHardlink(source: string, target: string, options: SyncOptio
   }
 
   // Check if source file exists
-  try {
-    await Deno.stat(source);
-  } catch (error) {
+  const sourceFile = Bun.file(source);
+  if (!(await sourceFile.exists())) {
     console.error(`Source file does not exist: ${source}`);
     return;
   }
 
   // Create parent directory if it doesn't exist
   const targetDir = path.dirname(target);
+  const fs = await import("fs/promises");
   try {
-    await Deno.mkdir(targetDir, { recursive: true });
-  } catch (error) {
-    if (!(error instanceof Deno.errors.AlreadyExists)) {
+    await fs.mkdir(targetDir, { recursive: true });
+  } catch (error: any) {
+    if (error.code !== "EEXIST") {
       throw error;
     }
   }
@@ -42,11 +43,11 @@ async function createHardlink(source: string, target: string, options: SyncOptio
   let sourceInode = "";
 
   try {
-    const targetStat = await Deno.lstat(target);
+    const targetStat = await fs.lstat(target);
     targetExists = true;
     targetInode = `${targetStat.dev}-${targetStat.ino}`;
 
-    const sourceStat = await Deno.stat(source);
+    const sourceStat = await fs.stat(source);
     sourceInode = `${sourceStat.dev}-${sourceStat.ino}`;
 
     // If target is already a hard link to the same source, skip
@@ -59,7 +60,7 @@ async function createHardlink(source: string, target: string, options: SyncOptio
 
     // If force is enabled, remove existing file/link
     if (force) {
-      await Deno.remove(target);
+      await fs.unlink(target);
       if (verbose) {
         console.log(`Removed existing: ${target}`);
       }
@@ -67,15 +68,15 @@ async function createHardlink(source: string, target: string, options: SyncOptio
       console.warn(`Skipping: ${target} already exists (use --force to overwrite)`);
       return;
     }
-  } catch (error) {
-    if (!(error instanceof Deno.errors.NotFound)) {
+  } catch (error: any) {
+    if (error.code !== "ENOENT") {
       throw error;
     }
   }
 
   // Create hard link
   try {
-    await Deno.link(source, target);
+    await fs.link(source, target);
     if (verbose) {
       console.log(`Created hard link: ${target} -> ${source}`);
     }
@@ -85,21 +86,25 @@ async function createHardlink(source: string, target: string, options: SyncOptio
 }
 
 async function syncDirectory(sourceDir: string, targetDir: string, options: SyncOptions): Promise<void> {
+  const fs = await import("fs/promises");
+
   try {
-    await Deno.stat(sourceDir);
+    await fs.stat(sourceDir);
   } catch {
     console.error(`Source directory does not exist: ${sourceDir}`);
-    Deno.exit(1);
+    process.exit(1);
   }
 
-  for await (const entry of Deno.readDir(sourceDir)) {
+  const entries = await fs.readdir(sourceDir, { withFileTypes: true });
+
+  for (const entry of entries) {
     const sourcePath = path.join(sourceDir, entry.name);
     const targetPath = path.join(targetDir, entry.name);
 
-    if (entry.isDirectory) {
+    if (entry.isDirectory()) {
       // Recursively sync subdirectories
       await syncDirectory(sourcePath, targetPath, options);
-    } else if (entry.isFile) {
+    } else if (entry.isFile()) {
       // Create hard link for files
       await createHardlink(sourcePath, targetPath, options);
     }
@@ -107,32 +112,31 @@ async function syncDirectory(sourceDir: string, targetDir: string, options: Sync
 }
 
 async function main() {
-  const args = Deno.args;
+  const { values, positionals } = parseArgs({
+    args: Bun.argv.slice(2),
+    options: {
+      force: {
+        type: "boolean",
+        short: "f",
+      },
+      verbose: {
+        type: "boolean",
+        short: "v",
+      },
+      "dry-run": {
+        type: "boolean",
+      },
+      help: {
+        type: "boolean",
+        short: "h",
+      },
+    },
+    allowPositionals: true,
+  });
 
-  let force = false;
-  let verbose = false;
-  let dryRun = false;
-  let help = false;
-  const positionals: string[] = [];
-
-  for (let i = 0; i < args.length; i++) {
-    const arg = args[i];
-    if (arg === "-f" || arg === "--force") {
-      force = true;
-    } else if (arg === "-v" || arg === "--verbose") {
-      verbose = true;
-    } else if (arg === "--dry-run") {
-      dryRun = true;
-    } else if (arg === "-h" || arg === "--help") {
-      help = true;
-    } else if (!arg.startsWith("-")) {
-      positionals.push(arg);
-    }
-  }
-
-  if (help || positionals.length < 2) {
+  if (values.help || positionals.length < 2) {
     console.log(`
-Usage: deno run --allow-read --allow-write hardlink-sync.ts <source-dir> <target-dir> [options]
+Usage: bun hardlink-sync.ts <source-dir> <target-dir> [options]
 
 Creates hard links from source directory to target directory.
 
@@ -143,20 +147,20 @@ Options:
   -h, --help       Show this help message
 
 Example:
-  deno run --allow-read --allow-write hardlink-sync.ts ./fish ~/.config/fish --force --verbose
+  bun hardlink-sync.ts ./fish ~/.config/fish --force --verbose
 `);
-    Deno.exit(0);
+    process.exit(0);
   }
 
-  const sourceDir = path.resolve(positionals[0]);
-  const targetDir = path.resolve(positionals[1]);
+  const sourceDir = path.resolve(positionals[0] as string);
+  const targetDir = path.resolve(positionals[1] as string);
 
   const options: SyncOptions = {
     source: sourceDir,
     target: targetDir,
-    force,
-    verbose,
-    dryRun,
+    force: values.force as boolean,
+    verbose: values.verbose as boolean,
+    dryRun: values["dry-run"] as boolean,
   };
 
   console.log(`Creating hard links from ${sourceDir} to ${targetDir}...`);
@@ -166,6 +170,4 @@ Example:
   console.log("✅ Hard link sync completed successfully!");
 }
 
-if (import.meta.main) {
-  main();
-}
+main();
