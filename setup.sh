@@ -12,26 +12,25 @@ mkdir -p "$XDG_CONFIG_HOME"
 echo "Setting up dotfiles symlinks..."
 # Function to sync directory with .dotignore support
 
+# fish - use hard links to avoid circular reference issues
+deno run --allow-read --allow-write tools/hardlink-sync.ts "$DOTFILES_DIR/fish" "$TARGET_DIR/.config/fish" --force
 
-# fish
-sync_with_ignore "$DOTFILES_DIR/fish" "$TARGET_DIR/.config/fish"
+# wezterm - use hard links
+deno run --allow-read --allow-write tools/hardlink-sync.ts "$DOTFILES_DIR/wezterm" "$TARGET_DIR/.config/wezterm" --force
 
-# wezterm
-sync_with_ignore "$DOTFILES_DIR/wezterm" "$TARGET_DIR/.config/wezterm"
+# claude - use hard links
+deno run --allow-read --allow-write tools/hardlink-sync.ts "$DOTFILES_DIR/claude" "$TARGET_DIR/.claude" --force
 
-# claude - sync all files with .dotignore support
-sync_with_ignore "$DOTFILES_DIR/claude" "$TARGET_DIR/.claude"
+# aqua - use hard links
+deno run --allow-read --allow-write tools/hardlink-sync.ts "$DOTFILES_DIR/aqua" "$TARGET_DIR/.config/aqua" --force
 
-# aqua
-sync_with_ignore "$DOTFILES_DIR/aqua" "$TARGET_DIR/.config/aqua"
+# mise - use hard links
+deno run --allow-read --allow-write tools/hardlink-sync.ts "$DOTFILES_DIR/mise" "$TARGET_DIR/.config/mise" --force
 
-# mise
-sync_with_ignore "$DOTFILES_DIR/mise" "$TARGET_DIR/.config/mise"
-
-# tools
-sync_with_ignore "$DOTFILES_DIR/tools" "$TARGET_DIR/.config/tools"
-# nvim
-sync_with_ignore "$DOTFILES_DIR/nvim" "$TARGET_DIR/.config/nvim"
+# tools - use hard links
+deno run --allow-read --allow-write tools/hardlink-sync.ts "$DOTFILES_DIR/tools" "$TARGET_DIR/.config/tools" --force
+# nvim - use hard links
+deno run --allow-read --allow-write tools/hardlink-sync.ts "$DOTFILES_DIR/nvim" "$TARGET_DIR/.config/nvim" --force
 
 # karabiner
 bun run karabiner/karabiner.ts
