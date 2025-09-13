@@ -16,16 +16,20 @@
       "description": "Auto-merge mise updates after 7 days",
       "matchFileNames": ["mise/config.toml"],
       "matchCurrentAge": "7 days",
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     },
     {
       "description": "Auto-merge node updates",
       "matchDatasources": ["package.json"],
       "automerge": true,
-      "matchCurrentAge": "7 days"
+      "matchCurrentAge": "7 days",
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all non-major node updates"
     }
   ],
-  "extends": ["schedule:automergeDaily", ":dependencyDashboard"],
-  "ignoreDeps": [
-  ]
+  "dependencyDashboardApproval": true,
+  "pinDigests": true,
+  "addLabels": ["dependencies:renovate"],
+  "extends": ["schedule:automergeDaily", ":dependencyDashboard","config:best-practices"]
 }
