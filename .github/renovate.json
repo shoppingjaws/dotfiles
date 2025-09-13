@@ -16,7 +16,7 @@
   "extends": ["schedule:automergeDaily", ":dependencyDashboard"],
   "ignoreDeps": [
     "1password/cli",
-    "slack.com/slack-cli",
+    "aqua:slack.com/slack-cli",
     "kzdiff",
     "opencommit",
     "ccusage",
