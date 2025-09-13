@@ -12,12 +12,17 @@
   "packageRules": [
     {
       "description": "Auto-merge mise updates after 7 days",
-      "matchPackageNames": [
-        "mise"
-      ],
+      "matchFileNames": ["mise/config.toml"],
       "matchCurrentAge": "7days",
       "automerge": true
     }
   ],
-  "extends": ["schedule:automergeDaily", ":dependencyDashboard"]
+  "extends": ["schedule:automergeDaily", ":dependencyDashboard"],
+  "ignoreDeps": [
+    "kzdiff",
+    "opencommit",
+    "ccusage",
+    "awslabs.aws-documentation-mcp-server",
+    "awslabs.aws-pricing-mcp-server"
+  ]
 }
