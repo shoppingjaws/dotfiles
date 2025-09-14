@@ -21,7 +21,12 @@ set -gx EDITOR "code"
 # WezTerm
 fish_add_path /Applications/WezTerm.app/Contents/MacOS
 # fisher
-fish_add_path $__fish_config_dir/fisherw
+fish_add_path $__fish_config_dir/fisher
+# if fisher is not installed, install it
+if not type -q fisher
+    echo "Installing fisher..."
+    curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+end
 
 # mise
 mise activate fish | source

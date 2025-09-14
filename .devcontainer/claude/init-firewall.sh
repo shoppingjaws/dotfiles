@@ -67,7 +67,6 @@ done < <(echo "$gh_ranges" | jq -r '(.web + .api + .git)[]' | aggregate -q)
 for domain in \
     "registry.npmjs.org" \
     "api.anthropic.com" \
-    "sentry.io" \
     "statsig.anthropic.com" \
     "statsig.com" \
     "marketplace.visualstudio.com" \
@@ -79,7 +78,6 @@ for domain in \
         echo "ERROR: Failed to resolve $domain"
         exit 1
     fi
-    
     while read -r ip; do
         if [[ ! "$ip" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
             echo "ERROR: Invalid IP from DNS for $domain: $ip"
