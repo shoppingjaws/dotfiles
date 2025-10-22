@@ -7,7 +7,7 @@
   "permissions": {
     "allow": [
       "Bash(safe_find:*)",
-      "Bash(git_root)",
+      "Bash(cgr)",
       "Bash(diff:*)",
       "Bash(echo:*)",
       "Bash(rg:*)",
