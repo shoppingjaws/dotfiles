@@ -21,7 +21,7 @@
     },
     {
       "description": "Auto-merge node updates",
-      "matchDatasources": ["package.json"],
+      "matchFileNames": ["package.json"],
       "automerge": true,
       "matchCurrentAge": "7 days",
       "matchUpdateTypes": ["minor", "patch"],
