@@ -4,6 +4,10 @@
   "schedule": [
     "at any time"
   ],
+  "automerge": true,
+  "automergeSchedule": [
+    "at any time"
+  ],
   "major": {
     "automerge": false
   },
