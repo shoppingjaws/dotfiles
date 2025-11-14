@@ -41,7 +41,7 @@ fd = "10.2.0"
 "pipx:awslabs.aws-pricing-mcp-server" = "1.0.3"
 #nvim
 "npm:neovim" = "5.4.0"
-"aqua:tree-sitter/tree-sitter" = "0.25.8"
+"aqua:tree-sitter/tree-sitter" = "0.25.10"
 [tasks.mise_setup]
 description = "Setup mise tools"
 run = "bun run karabiner/karabiner.ts"
