@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Setup script to create symlinks for dotfiles
-
-set -ex
+set +e  # Disable exit on error for these commands
 
 DOTFILES_DIR="$HOME/ghq/github.com/shoppingjaws/dotfiles"
 TARGET_DIR="$HOME"
@@ -44,6 +43,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   brew bundle --file="brew/Brewfile"
 fi
 
+echo $DOTFILES_DIR/npm/opencommit/setup.sh
 sh "$DOTFILES_DIR/npm/opencommit/setup.sh"
 
 echo "Setup complete!"
