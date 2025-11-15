@@ -7,8 +7,6 @@ alias p8 "ping 8.8.8.8"
 # git
 alias gc "git checkout"
 alias gw "git worktree"
-alias gwb "run_with_auto_cd bun tools/git_worktree_branch.ts hogehoge -- mise trust -a"
-alias gwe "git_worktree_exit"
 alias gcb "git_checkout_branch"
 alias gcm "git_checkout_main"
 alias gui "lazygit"
