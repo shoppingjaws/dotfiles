@@ -1,5 +1,5 @@
 # opencommit
-oco config set OCO_MODEL=gpt-5-mini-2025-08-07
+oco config set OCO_MODEL=gpt-o4
 # oco config set OCO_MODEL=claude-sonnet-4-5-20250929
 oco config set OCO_AI_PROVIDER=openai
 oco config set OCO_LANGUAGE=ja
