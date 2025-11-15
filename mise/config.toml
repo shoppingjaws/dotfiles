@@ -4,7 +4,7 @@ pipx_uvx = true
 lockfile = true
 [tools]
 ghq = "1.8.0"
-node = "22"
+node = "24"
 go = "latest"
 terraform = "1.12.2"
 jq = "1.8.1"
