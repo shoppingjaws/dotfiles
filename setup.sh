@@ -44,5 +44,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
   brew bundle --file="brew/Brewfile"
 fi
 
+sh "$DOTFILES_DIR/npm/opencommit/setup.sh"
 
 echo "Setup complete!"

@@ -1,4 +1,4 @@
-# 🏗️ CLAUDE.md - Claude Code Global Configuration
+# CLAUDE.md - Claude Code Global Configuration
 
 This file provides guidance to Claude Code (claude.ai/code) when working across all projects.
 
