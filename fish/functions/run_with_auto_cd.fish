@@ -1,4 +1,4 @@
-# コマンドを実行し、出力に CD_TO: マーカーがあればそのパスへcdする汎用function
+# 子プロセスで実行されるコマンド(bun shell等)から親シェルでcdするためのラッパー関数。出力内の CD_TO:<path> マーカーで指定されたディレクトリに自動的に移動
 # 使い方: run_with_auto_cd <command> [args...] [-- <additional_commands>]
 #
 # コマンドは最終行に CD_TO:<path> を出力することで、
