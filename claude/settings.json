@@ -1,6 +1,5 @@
 {
   "env": {
-    "AWS_REGION": "ap-northeast-1",
     "DISABLE_AUTOUPDATER": "1"
   },
   "includeCoAuthoredBy": false,
