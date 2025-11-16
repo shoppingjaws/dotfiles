@@ -33,12 +33,12 @@ const hasChanges = statusOutput.trim().length > 0;
 // Prompt for confirmation if there are unpushed or uncommitted changes
 if (unpushedCommits > 0 || hasChanges) {
   if (unpushedCommits > 0) {
-    process.stderr.write(`Unpushed changes detected (${unpushedCommits} commits).\n`);
+    console.log(`Unpushed changes detected (${unpushedCommits} commits).`);
   }
   if (hasChanges) {
-    process.stderr.write("Uncommitted changes detected.\n");
+    console.log("Uncommitted changes detected.");
   }
-  process.stderr.write("Continue? (y/N) ");
+  console.log("Continue? (y/N)");
 
   // Read user input
   const answer = prompt("");
