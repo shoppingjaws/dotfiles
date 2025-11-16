@@ -46,9 +46,10 @@ const worktreeDir = resolve(
   `worktrees/github.com/${repoPath}/${branchName}`
 );
 
-// ディレクトリが既に存在する場合はエラー
+// ディレクトリが既に存在する場合はそこへcd
 if (existsSync(worktreeDir)) {
-  console.error(`Error: Worktree already exists at: ${worktreeDir}`);
+  console.log(`Worktree already exists at: ${worktreeDir}`);
+  console.log(`✓ Moving to existing worktree`);
 
   // stashしていた場合はpop
   if (stashed) {
@@ -57,7 +58,9 @@ if (existsSync(worktreeDir)) {
     console.log("✓ Stashed changes restored");
   }
 
-  process.exit(1);
+  // fishのrun_with_auto_cdがcdするためのマーカー
+  console.log(`CD_TO:${worktreeDir}`);
+  process.exit(0);
 }
 
 // ローカルブランチの存在を確認
