@@ -3,14 +3,6 @@
 import { $ } from "bun";
 import { existsSync } from "fs";
 import { resolve } from "path";
-import { randomBytes } from "crypto";
-
-// ランダムなshort hashを生成
-function generateShortHash(length = 6): string {
-  return randomBytes(Math.ceil(length / 2))
-    .toString("hex")
-    .slice(0, length);
-}
 
 // ブランチ名を引数から取得
 const branchName = process.argv[2];
@@ -48,26 +40,24 @@ if (!repoMatch) {
 }
 const repoPath = repoMatch[1];
 
-// まずhashなしでディレクトリをチェック
-let worktreeDirName = branchName;
-let worktreeDir = resolve(
+// worktreeディレクトリのパスを生成
+const worktreeDir = resolve(
   process.env.HOME!,
-  `worktrees/github.com/${repoPath}/${worktreeDirName}`
+  `worktrees/github.com/${repoPath}/${branchName}`
 );
 
-// ディレクトリが既に存在する場合
+// ディレクトリが既に存在する場合はエラー
 if (existsSync(worktreeDir)) {
-  console.log(`Worktree already exists at: ${worktreeDir}`);
-  console.log("Creating new worktree with random hash to avoid conflict...");
+  console.error(`Error: Worktree already exists at: ${worktreeDir}`);
 
-  // ランダムなhashを付与して新しいディレクトリ名を生成
-  const shortHash = generateShortHash();
-  worktreeDirName = `${branchName}-${shortHash}`;
-  worktreeDir = resolve(
-    process.env.HOME!,
-    `worktrees/github.com/${repoPath}/${worktreeDirName}`
-  );
-  console.log(`New worktree will be created at: ${worktreeDir}`);
+  // stashしていた場合はpop
+  if (stashed) {
+    console.log("Popping stashed changes...");
+    await $`git stash pop`;
+    console.log("✓ Stashed changes restored");
+  }
+
+  process.exit(1);
 }
 
 // ローカルブランチの存在を確認
