@@ -12,27 +12,27 @@ echo "Setting up dotfiles symlinks..."
 # Function to sync directory with .dotignore support
 
 # fish - use hard links to avoid circular reference issues
-bun tools/hardlink-sync.ts "$DOTFILES_DIR/fish" "$TARGET_DIR/.config/fish" --force
+bun "$DOTFILES_DIR"/tools/hardlink-sync.ts "$DOTFILES_DIR/fish" "$TARGET_DIR/.config/fish" --force
 
 # wezterm - use hard links
-bun tools/hardlink-sync.ts "$DOTFILES_DIR/wezterm" "$TARGET_DIR/.config/wezterm" --force
+bun "$DOTFILES_DIR"/tools/hardlink-sync.ts "$DOTFILES_DIR/wezterm" "$TARGET_DIR/.config/wezterm" --force
 
 # claude - use hard links
-bun tools/hardlink-sync.ts "$DOTFILES_DIR/claude" "$TARGET_DIR/.claude" --force
+bun "$DOTFILES_DIR"/tools/hardlink-sync.ts "$DOTFILES_DIR/claude" "$TARGET_DIR/.claude" --force
 
 # aqua - use hard links
-bun tools/hardlink-sync.ts "$DOTFILES_DIR/aqua" "$TARGET_DIR/.config/aqua" --force
+bun "$DOTFILES_DIR"/tools/hardlink-sync.ts "$DOTFILES_DIR/aqua" "$TARGET_DIR/.config/aqua" --force
 
 # mise - use hard links
-bun tools/hardlink-sync.ts "$DOTFILES_DIR/mise" "$TARGET_DIR/.config/mise" --force
+bun "$DOTFILES_DIR"/tools/hardlink-sync.ts "$DOTFILES_DIR/mise" "$TARGET_DIR/.config/mise" --force
 
 # tools - use hard links
-bun tools/hardlink-sync.ts "$DOTFILES_DIR/tools" "$TARGET_DIR/.config/tools" --force
+bun "$DOTFILES_DIR"/tools/hardlink-sync.ts "$DOTFILES_DIR/tools" "$TARGET_DIR/.config/tools" --force
 # nvim - use hard links
-bun tools/hardlink-sync.ts "$DOTFILES_DIR/nvim" "$TARGET_DIR/.config/nvim" --force
+bun "$DOTFILES_DIR"/tools/hardlink-sync.ts "$DOTFILES_DIR/nvim" "$TARGET_DIR/.config/nvim" --force
 
 # karabiner
-bun run karabiner/karabiner.ts
+bun run "$DOTFILES_DIR"/karabiner/karabiner.ts
 
 # claude code mcp
 claude mcp add -s user terraform -- docker run -i --rm hashicorp/terraform-mcp-server
