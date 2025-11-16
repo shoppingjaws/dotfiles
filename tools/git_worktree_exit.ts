@@ -13,7 +13,6 @@ if (!worktreeList.includes(currentDir)) {
   console.error("Not in a worktree");
   process.exit(1);
 }
-
 // Check for unpushed changes and uncommitted changes
 const branch = (await $`git branch --show-current`.text()).trim();
 
