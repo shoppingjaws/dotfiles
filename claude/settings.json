@@ -13,7 +13,6 @@
       "Bash(rg:*)",
       "Bash(cd:*)",
       "Bash(grep:*)",
-      "WebFetch(*)",
       "Bash(gh workflow view:*)",
       "Bash(gh workflow list:*)",
       "Bash(ls:*)",
