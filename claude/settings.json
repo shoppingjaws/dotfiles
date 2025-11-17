@@ -7,6 +7,7 @@
     "allow": [
       "Bash(safe_find:*)",
       "Bash(cgr)",
+      "Bash(echo $SHOPPINGJAWS_TASK_URL)",
       "Bash(diff:*)",
       "Bash(echo:*)",
       "Bash(rg:*)",

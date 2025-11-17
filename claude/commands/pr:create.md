@@ -11,8 +11,9 @@ description: "create or update PR"
 4. Detect repository owner with the command `gh repo view --json owner --jq '.owner.login'`
 5. Search for related PRs using the command to retrieve the PR purpose: `gh search prs --author shoppingjaws --owner OWNER`.
 6. Read related PRs description `gh pr view`
-7. Analyzes the purpose of this PR
-8. Update or Create PullRequest description based on the result of analysis
+7. Search related backlog of this PR from $SHOPPINGJAWS_TASK_URL
+8. Analyzes the purpose of this PR
+9. Update or Create PullRequest description based on the result of analysis
 
 # Rule
 
