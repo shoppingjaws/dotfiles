@@ -5,12 +5,17 @@ import { existsSync } from "fs";
 import { resolve } from "path";
 
 // ブランチ名を引数から取得
-const branchName = process.argv[2];
+const inputBranchName = process.argv[2];
 
-if (!branchName) {
+if (!inputBranchName) {
   console.error("Usage: git_worktree_branch <branch_name>");
   process.exit(1);
 }
+
+// develop/ プレフィックスを追加（すでに含まれていない場合のみ）
+const branchName = inputBranchName.startsWith("develop/")
+  ? inputBranchName
+  : `develop/${inputBranchName}`;
 
 // 変更をstash
 console.log("Stashing changes...");
