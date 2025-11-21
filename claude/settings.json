@@ -6,6 +6,7 @@
   "permissions": {
     "allow": [
       "Bash(safe_find:*)",
+      "WebSearch",
       "Bash(cgr)",
       "Bash(echo $SHOPPINGJAWS_TASK_URL)",
       "Bash(diff:*)",
