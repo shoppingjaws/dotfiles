@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash(gh pr create:*), Bash(gh pr view:*), Bash(gh pr edit:*), Bash(git log:*),Bash(git push -u origin HEAD),Bash(git add:*),Bash(git commit:*), Bash(gh search prs:*), Bash(gh repo view:*)
+allowed-tools: Bash(gh pr create:*), Bash(gh pr view:*), Bash(gh pr edit:*), Bash(git log:*),Bash(git push -u origin HEAD),Bash(git add:*),Bash(git commit:*), Bash(gh search prs:*), Bash(gh repo view:*), Bash(gh pr comment:*)
 description: "create or update PR"
 ---
 
@@ -14,6 +14,7 @@ description: "create or update PR"
 7. Search related backlog of this PR from $SHOPPINGJAWS_TASK_URL
 8. Analyzes the purpose of this PR
 9. Update or Create PullRequest description based on the result of analysis
+10. Check for any misconfigurations and typos. If they exist, please add a comment about them.
 
 # Rule
 
