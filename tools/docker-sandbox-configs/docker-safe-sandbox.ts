@@ -86,20 +86,91 @@ interface SandboxConfig {
   environment?: Record<string, string>;
 }
 
+async function listAvailableRuntimes(scriptDir: string) {
+  const { readdirSync } = await import("fs");
+
+  try {
+    const files = readdirSync(scriptDir);
+    const yamlFiles = files
+      .filter(f => (f.endsWith(".yaml") || f.endsWith(".yml")) && f !== "README.yaml")
+      .sort();
+
+    if (yamlFiles.length === 0) {
+      console.log("No runtime configurations found.");
+      return;
+    }
+
+    console.log("Available runtimes:");
+    console.log("");
+
+    for (const file of yamlFiles) {
+      const configPath = resolve(scriptDir, file);
+      const configContent = await Bun.file(configPath).text();
+      const config = parseYAML(configContent);
+
+      const runtimeName = file.replace(/\.yaml$/, "").replace(/\.yml$/, "");
+      const image = config.image || "unknown";
+
+      console.log(`  ${runtimeName.padEnd(10)} - ${image}`);
+    }
+
+    console.log("");
+    console.log("Usage:");
+    console.log("  docker-safe-sandbox --runtime <name> -- <command...>");
+    console.log("");
+    console.log("Example:");
+    console.log("  docker-safe-sandbox --runtime bun -- bun run script.ts");
+  } catch (error) {
+    console.error("Error reading runtime configurations:", error);
+  }
+}
+
 async function main() {
-  // 引数のパース: docker-safe-sandbox <config.yaml> -- <command...>
   const args = process.argv.slice(2);
+
+  // スクリプトのディレクトリを取得
+  const scriptDir = import.meta.dir;
+
+  // lsコマンドの処理
+  if (args.length === 1 && (args[0] === "ls" || args[0] === "list")) {
+    await listAvailableRuntimes(scriptDir);
+    process.exit(0);
+  }
+
+  // 引数のパース: docker-safe-sandbox --runtime <config-name> -- <command...>
   const separatorIndex = args.indexOf("--");
 
-  if (separatorIndex === -1 || separatorIndex === 0) {
-    console.error("Usage: docker-safe-sandbox <config.yaml> -- <command...>");
+  if (separatorIndex === -1) {
+    console.error("Usage: docker-safe-sandbox --runtime <name> -- <command...>");
+    console.error("");
+    console.error("Commands:");
+    console.error("  docker-safe-sandbox ls          List available runtimes");
     console.error("");
     console.error("Example:");
-    console.error("  docker-safe-sandbox bun.yaml -- bun run script.ts");
+    console.error("  docker-safe-sandbox --runtime bun -- bun run script.ts");
+    console.error("  docker-safe-sandbox --runtime node -- node script.js");
+    console.error("");
+    console.error("Run 'docker-safe-sandbox ls' to see available runtimes");
     process.exit(1);
   }
 
-  const configPath = args[0];
+  // --runtimeオプションの解析
+  let configName: string | undefined;
+  const argsBeforeSeparator = args.slice(0, separatorIndex);
+
+  const runtimeIndex = argsBeforeSeparator.indexOf("--runtime");
+  if (runtimeIndex !== -1 && runtimeIndex + 1 < argsBeforeSeparator.length) {
+    configName = argsBeforeSeparator[runtimeIndex + 1];
+  }
+
+  if (!configName) {
+    console.error("Error: --runtime option is required");
+    console.error("");
+    console.error("Usage: docker-safe-sandbox --runtime <name> -- <command...>");
+    console.error("Run 'docker-safe-sandbox ls' to see available runtimes");
+    process.exit(1);
+  }
+
   const dockerCommand = args.slice(separatorIndex + 1);
 
   if (dockerCommand.length === 0) {
@@ -107,9 +178,30 @@ async function main() {
     process.exit(1);
   }
 
+  // 設定ファイルのパスを解決
+  // 1. .yaml拡張子がある場合はそのまま使用
+  // 2. ない場合は、scriptDirから<config-name>.yamlを探す
+  const configPath: string =
+    configName.endsWith(".yaml") || configName.endsWith(".yml")
+      ? resolve(configName)
+      : resolve(scriptDir, `${configName}.yaml`);
+
   // 設定ファイルの読み込み
   if (!existsSync(configPath)) {
     console.error(`Error: Config file not found: ${configPath}`);
+    console.error("");
+    console.error("Available configs in this directory:");
+
+    // 利用可能な設定ファイルをリスト表示
+    const { readdirSync } = await import("fs");
+    try {
+      const files = readdirSync(scriptDir);
+      const yamlFiles = files.filter(f => f.endsWith(".yaml") || f.endsWith(".yml"));
+      yamlFiles.forEach(f => console.error(`  - ${f.replace(/\.yaml$/, "")}`));
+    } catch (e) {
+      // エラーは無視
+    }
+
     process.exit(1);
   }
 

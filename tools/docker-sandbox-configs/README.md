@@ -24,26 +24,45 @@ docker-sandbox-configs/
 ### 基本的な使い方
 
 ```bash
-docker-safe-sandbox <config.yaml> -- <command...>
+docker-safe-sandbox --runtime <name> -- <command...>
+```
+
+設定ファイルは自動的に `tools/docker-sandbox-configs/` から検索されます。
+
+### 利用可能なランタイムを確認
+
+```bash
+docker-safe-sandbox ls
+```
+
+出力例:
+```
+Available runtimes:
+
+  bun        - oven/bun:1.3.3
+  deno       - denoland/deno:latest
+  go         - golang:latest
+  node       - node:24
+  python     - python:latest
 ```
 
 ### 実行例
 
 ```bash
 # Bunでスクリプト実行
-docker-safe-sandbox tools/docker-sandbox-configs/bun.yaml -- bun run script.ts
+docker-safe-sandbox --runtime bun -- bun run script.ts
 
 # Node.jsでスクリプト実行
-docker-safe-sandbox tools/docker-sandbox-configs/node.yaml -- node script.js
+docker-safe-sandbox --runtime node -- node script.js
 
 # Denoでスクリプト実行
-docker-safe-sandbox tools/docker-sandbox-configs/deno.yaml -- deno run script.ts
+docker-safe-sandbox --runtime deno -- deno run script.ts
 
 # Goでビルド
-docker-safe-sandbox tools/docker-sandbox-configs/go.yaml -- go build
+docker-safe-sandbox --runtime go -- go build
 
 # Pythonでスクリプト実行
-docker-safe-sandbox tools/docker-sandbox-configs/python.yaml -- python script.py
+docker-safe-sandbox --runtime python -- python script.py
 ```
 
 ## Claude Code設定
