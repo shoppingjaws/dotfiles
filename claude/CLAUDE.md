@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working across 
 
 - Use safe_find instead of find command (safe_find is not allowed to use -exec option) when file searching
 - Use gh command instead of Fetch tool when fetch content from <https://github.com>
-- Use cgr command to navigate to the git repository root directory
+- Use cdr command to navigate to the git repository root directory
 - Use .yaml instead of .yml extension when creating nwe YAML file
 - Use bin/kustomize for Kustomize operations (allowed command)
 - Use kzdiff to see changes of kustomize build result (see @docs/kzdiff.md )

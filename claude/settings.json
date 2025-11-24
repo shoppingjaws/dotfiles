@@ -7,7 +7,7 @@
     "allow": [
       "Bash(safe_find:*)",
       "WebSearch",
-      "Bash(cgr)",
+      "Bash(cdr)",
       "Bash(echo $SHOPPINGJAWS_TASK_URL)",
       "Bash(diff:*)",
       "Bash(echo:*)",
