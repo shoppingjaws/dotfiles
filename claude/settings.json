@@ -60,7 +60,9 @@
       "mcp__terraform__policyDetails",
       "mcp__terraform__resolveProviderDocID",
       "mcp__terraform__searchModules",
-      "mcp__terraform__searchPolicies"
+      "mcp__terraform__searchPolicies",
+      "Bash(aws iam list-:*)",
+      "Bash(aws iam get-:*)"
     ],
     "ask": [
       "Bash(git push:*)"
