@@ -115,7 +115,8 @@
       "Bash(aws stepfunctions list-:*)",
       "Bash(aws cloudwatch list-:*)",
       "Bash(aws cloudwatch get-:*)",
-      "Bash(aws cloudwatch describe-:*)"
+      "Bash(aws cloudwatch describe-:*)",
+      "Bash(docker-safe-sandbox :*)"
     ],
     "ask": [
       "Bash(git push:*)"
