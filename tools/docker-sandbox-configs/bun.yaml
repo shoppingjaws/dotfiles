@@ -1,9 +1,14 @@
+# Bun runtime configuration with dynamic version for docker-safe-sandbox
+name: Bun
+image: oven/bun:{version}
+workdir: /workspace
+
 # Dynamic version resolution
 # The command output will be used to replace {version} in the image field
 version: bun --version
-# Bun runtime configuration with dynamic version for docker-safe-sandbox
-image: oven/bun:{version}
-workdir: /workspace
+
+# Network access (default: true, set to false to disable external network access)
+network: true
 
 volumes:
   - host: ./node_modules

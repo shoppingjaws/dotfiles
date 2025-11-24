@@ -67,7 +67,15 @@ function parseYAML(content: string): any {
 					currentArray = null;
 				}
 			} else {
-				result[key] = value.trim();
+				const trimmedValue = value.trim();
+				// Convert "true" and "false" strings to boolean
+				if (trimmedValue === "true") {
+					result[key] = true;
+				} else if (trimmedValue === "false") {
+					result[key] = false;
+				} else {
+					result[key] = trimmedValue;
+				}
 				currentArray = null;
 			}
 		}
@@ -90,9 +98,11 @@ function parseYAML(content: string): any {
 }
 
 interface SandboxConfig {
+	name: string;
 	image: string;
 	workdir?: string;
 	version?: string;
+	network?: boolean;
 	volumes?: Array<{
 		host: string;
 		container: string;
@@ -126,10 +136,10 @@ async function listAvailableRuntimes(scriptDir: string) {
 			const configContent = await Bun.file(configPath).text();
 			const config = parseYAML(configContent);
 
-			const runtimeName = file.replace(/\.yaml$/, "").replace(/\.yml$/, "");
 			const image = config.image || "unknown";
+			const networkStatus = config.network === false ? " [no network]" : "";
 
-			console.log(`  ${runtimeName.padEnd(10)} - ${image}`);
+			console.log(`  ${config.name.padEnd(15)} - ${image}${networkStatus}`);
 		}
 
 		console.log("");
@@ -248,6 +258,11 @@ async function main() {
 	const config: SandboxConfig = parseYAML(configContent);
 
 	// 必須フィールドのチェック
+	if (!config.name) {
+		console.error("Error: 'name' field is required in config file");
+		process.exit(1);
+	}
+
 	if (!config.image) {
 		console.error("Error: 'image' field is required in config file");
 		process.exit(1);
@@ -273,6 +288,11 @@ async function main() {
 		// Dockerコマンドの構築
 		const workdir = config.workdir || "/workspace";
 		const dockerArgs = ["run", "--rm"];
+
+		// ネットワークの設定
+		if (config.network === false) {
+			dockerArgs.push("--network", "none");
+		}
 
 		// ワークスペースのマウント
 		dockerArgs.push("-v", `${tmpDirPath}:${workdir}`);
