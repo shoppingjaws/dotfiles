@@ -92,6 +92,7 @@ function parseYAML(content: string): any {
 interface SandboxConfig {
 	image: string;
 	workdir?: string;
+	version?: string;
 	volumes?: Array<{
 		host: string;
 		container: string;
@@ -139,6 +140,19 @@ async function listAvailableRuntimes(scriptDir: string) {
 		console.log("  docker-safe-sandbox --runtime bun -- bun run script.ts");
 	} catch (error) {
 		console.error("Error reading runtime configurations:", error);
+	}
+}
+
+async function resolveVersion(versionCommand: string): Promise<string> {
+	try {
+		// コマンドを実行して出力を取得
+		const result = await $`sh -c ${versionCommand}`.text();
+		// トリムして返す
+		return result.trim();
+	} catch (error) {
+		console.error(`Error executing version command: ${versionCommand}`);
+		console.error(error);
+		throw error;
 	}
 }
 
@@ -237,6 +251,13 @@ async function main() {
 	if (!config.image) {
 		console.error("Error: 'image' field is required in config file");
 		process.exit(1);
+	}
+
+	// バージョンの動的解決
+	if (config.version) {
+		const resolvedVersion = await resolveVersion(config.version);
+		// imageフィールド内の{version}を置換
+		config.image = config.image.replace(/\{version\}/g, resolvedVersion);
 	}
 
 	// 一時ディレクトリ作成

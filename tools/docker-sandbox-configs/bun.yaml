@@ -1,0 +1,14 @@
+# Dynamic version resolution
+# The command output will be used to replace {version} in the image field
+version: bun --version
+# Bun runtime configuration with dynamic version for docker-safe-sandbox
+image: oven/bun:{version}
+workdir: /workspace
+
+volumes:
+  - host: ./node_modules
+    container: /workspace/node_modules
+    readonly: true
+
+environment:
+  NODE_ENV: production
