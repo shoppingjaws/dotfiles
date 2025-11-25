@@ -119,7 +119,8 @@
       "Bash(docker-safe-sandbox :*)"
     ],
     "ask": [
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Edit(.claude/CLAUDE.md)"
     ],
     "deny": [
       "Bash(find:*)",
