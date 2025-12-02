@@ -38,6 +38,7 @@ bun run "$DOTFILES_DIR"/karabiner/karabiner.ts
 claude mcp add -s user terraform -- docker run -i --rm hashicorp/terraform-mcp-server
 claude mcp add -s user aws-documentation -- awslabs.aws-documentation-mcp-server
 claude mcp add -s user --transport http notion https://mcp.notion.com/mcp
+claude mcp add -s user container-use -- container-use stdio
 
 # homebrew
 if [[ "$(uname)" == "Darwin" ]]; then

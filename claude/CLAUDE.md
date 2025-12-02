@@ -19,50 +19,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working across 
 
 - When creating scripts for temporary file operations or repetitive tasks, it is recommended to write them in Deno.
 
-## Script Execution with Docker Safe Sandbox
+## MCP
 
-### Overview
+### container-use MCP
 
-`docker-safe-sandbox` is a tool for safely executing scripts in Docker containers. It respects `.gitignore` to exclude sensitive files and efficiently mounts dependencies like `node_modules` via `-v` for fast execution.
+ALWAYS use ONLY Environments for ANY and ALL file, code, or shell operations—NO EXCEPTIONS—even for simple or generic requests.
 
-### Before Running Scripts
+DO NOT install or use the git cli with the environment_run_cmd tool. All environment tools will handle git operations for you. Changing ".git" yourself will compromise the integrity of your environment.
 
-**IMPORTANT**: Always check available runtimes first:
-
-```bash
-docker-safe-sandbox ls
-```
-
-This command shows all available runtime configurations and their Docker images.
-
-### Usage
-
-```bash
-docker-safe-sandbox --runtime <name> -- <command...>
-```
-
-### Examples
-
-```bash
-# Bun
-docker-safe-sandbox --runtime bun -- bun run script.ts
-
-# Node.js (if configured)
-docker-safe-sandbox --runtime node -- node script.js
-
-# Deno (if configured)
-docker-safe-sandbox --runtime deno -- deno run script.ts
-```
-
-### Key Features
-
-- **Security**: Automatically excludes files in `.gitignore` (e.g., `.env`)
-- **Performance**: Dependencies are mounted read-only via `-v` for speed
-- **Isolation**: Scripts run in isolated Docker containers
-- **Cleanup**: Temporary files and containers are automatically removed
-
-### Workflow
-
-1. Check available runtimes: `docker-safe-sandbox ls`
-2. Select appropriate runtime based on available options
-3. Execute script with `--runtime` option
+You MUST inform the user how to view your work using `container-use log <env_id>` AND `container-use checkout <env_id>`. Failure to do this will make your work inaccessible to others.
