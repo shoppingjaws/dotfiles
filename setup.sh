@@ -31,6 +31,8 @@ bun "$DOTFILES_DIR"/tools/hardlink-sync.ts "$DOTFILES_DIR/tools" "$TARGET_DIR/.c
 # nvim - use hard links
 bun "$DOTFILES_DIR"/tools/hardlink-sync.ts "$DOTFILES_DIR/nvim" "$TARGET_DIR/.config/nvim" --force
 
+bun "$DOTFILES_DIR"/tools/hardlink-sync.ts "$DOTFILES_DIR/safe-command" "$TARGET_DIR/.config/safe-command" --force
+
 # karabiner
 bun run "$DOTFILES_DIR"/karabiner/karabiner.ts
 
