@@ -1,0 +1,7 @@
+{
+  "workdir": "/workdir",
+  "base_image": "jdxcode/mise:2025.11",
+  "setup_commands": [
+    "mise install"
+  ]
+}
