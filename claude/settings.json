@@ -72,7 +72,8 @@
     ],
     "ask": [
       "Bash(git push:*)",
-      "Edit(.claude/CLAUDE.md)"
+      "Edit(.claude/CLAUDE.md)",
+      "Edit(mise.toml)"
     ],
     "deny": [
       "Bash(find:*)",
