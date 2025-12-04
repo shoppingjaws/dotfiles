@@ -4,7 +4,7 @@ projects/
 shell-snapshots/
 statsig/
 todos/
-
+commands/*.work.md
 # Lock files
 *.lock
 
