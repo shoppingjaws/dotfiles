@@ -30,3 +30,4 @@ description: "create or update PR"
 - Use HEREDOC to pass PR body directly to `gh pr create --body` command
 - Example: `gh pr create --draft --title "..." --body "$(cat <<'EOF'\n...\nEOF\n)"`
 - NEVER use /tmp/ or any temporary file for storing PR descriptions
+- When referencing PR numbers, always include a space after the number (e.g., "#1234 がXXです" not "#1234がXXです")
