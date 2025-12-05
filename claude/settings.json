@@ -24,6 +24,7 @@
       "Bash(git diff:*)",
       "Bash(git log:*)",
       "Bash(git pull:*)",
+      "Bash(git push -u origin HEAD)",
       "Bash(gh run view:*)",
       "Bash(gh run list:*)",
       "Bash(gh run watch:*)",
