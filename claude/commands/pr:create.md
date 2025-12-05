@@ -26,3 +26,7 @@ description: "create or update PR"
 - don't write based on speculation.
 - Output Pull Request URL only
 - use `git push -u origin HEAD` to push as possible
+- DO NOT create temporary files or use Edit/Write tools for PR descriptions
+- Use HEREDOC to pass PR body directly to `gh pr create --body` command
+- Example: `gh pr create --draft --title "..." --body "$(cat <<'EOF'\n...\nEOF\n)"`
+- NEVER use /tmp/ or any temporary file for storing PR descriptions

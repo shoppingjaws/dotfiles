@@ -9,7 +9,7 @@
       "Bash(safe_find:*)",
       "WebSearch",
       "Bash(cdr)",
-      "Bash(echo $SHOPPINGJAWS_TASK_URL)",
+      "Bash(echo $SHOPPINGJAWS_TASK_URLS)",
       "Bash(diff:*)",
       "Bash(echo:*)",
       "Bash(rg:*)",
@@ -70,7 +70,10 @@
       "mcp__container-use__environment_file_delete",
       "mcp__container-use__environment_create",
       "mcp__notion__notion-fetch",
-      "mcp__notion__notion-search"
+      "mcp__notion__notion-search",
+      "mcp__notion__notion-get-self",
+      "mcp__notion__notion-get-comments",
+      "mcp__notion__notion-update-page"
     ],
     "ask": [
       "Bash(git push:*)",
