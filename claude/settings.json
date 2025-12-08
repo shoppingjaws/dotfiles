@@ -73,8 +73,7 @@
       "mcp__notion__notion-fetch",
       "mcp__notion__notion-search",
       "mcp__notion__notion-get-self",
-      "mcp__notion__notion-get-comments",
-      "mcp__notion__notion-update-page"
+      "mcp__notion__notion-get-comments"
     ],
     "ask": [
       "Bash(git push:*)",
