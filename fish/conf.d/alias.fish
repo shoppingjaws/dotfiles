@@ -29,6 +29,7 @@ alias kz "kustomize"
 # claude
 alias c "env claude"
 alias cc "env claude --add-dir (git rev-parse --show-toplevel)"
+alias cnu "env claude --continue --allowedTools mcp__notion__notion-update-page"
 
 # nix
 alias nix-rebuild "sudo nix run --extra-experimental-features 'nix-command flakes' nix-darwin/master#darwin-rebuild -- switch --impure --flake $(ghq root)/github.com/shoppingjaws/dotfiles/flake#darwin"
@@ -38,5 +39,5 @@ alias z "z -r" # zは最も頻繁にアクセスするディレクトリに飛�
 alias sl "ls"
 alias ls "eza --icons=always -alhg"
 alias krbn "karabiner_cli"
-alias co "code ."
+alias v "code ."
 alias cu "container-use"
