@@ -5,7 +5,6 @@
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
-      "Bash(git push -u origin HEAD)",
       "Bash(safe_find:*)",
       "WebSearch",
       "Bash(cdr)",
