@@ -22,6 +22,7 @@ Use `wezterm-peer` command to interact with panes in the same tab:
 - `wezterm-peer read <pane-id> [--start-line N] [--end-line N]` - Read text from a specific pane in the same tab
 
 Note: This command only accesses panes within the same tab for security reasons.
+Note: This command requires unsandbox environment to execute.
 
 ## Task Guidelines
 
