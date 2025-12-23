@@ -1,0 +1,141 @@
+#!/usr/bin/env bun
+// 同じタブ内のpaneを操作するスクリプト
+// Usage:
+//   wezterm-peer list                          - 同じタブ内の全paneを一覧表示
+//   wezterm-peer read <pane-id> [options]      - 指定したpaneのテキストを取得
+//     Options: --start-line N, --end-line N
+
+import { $ } from "bun";
+
+// ヘルプメッセージ
+function showHelp() {
+  console.log(`Usage:
+  wezterm-peer list                          - 同じタブ内の全paneを一覧表示
+  wezterm-peer read <pane-id> [options]      - 指定したpaneのテキストを取得
+    Options: --start-line N, --end-line N
+
+Examples:
+  wezterm-peer list
+  wezterm-peer read 123
+  wezterm-peer read 123 --start-line 0 --end-line 5`);
+}
+
+// 現在のpane IDとタブIDを取得
+function getCurrentPaneAndTab(): { currentPane: string; currentTab: string } {
+  const currentPane = process.env.WEZTERM_PANE;
+  if (!currentPane) {
+    console.error("Error: WEZTERM_PANE environment variable not set");
+    process.exit(1);
+  }
+
+  return { currentPane, currentTab: "" };
+}
+
+// wezterm cli listの出力から現在のタブIDを取得
+async function getCurrentTabId(currentPane: string): Promise<string> {
+  const listOutput = await $`wezterm cli list`.text();
+  const lines = listOutput.trim().split("\n");
+
+  for (let i = 1; i < lines.length; i++) {
+    const columns = lines[i].trim().split(/\s+/);
+    if (columns[2] === currentPane) {
+      return columns[1];
+    }
+  }
+
+  console.error("Error: Could not determine current tab");
+  process.exit(1);
+}
+
+// list コマンド: 同じタブ内の全paneを一覧表示
+async function listPanes() {
+  const { currentPane } = getCurrentPaneAndTab();
+  const currentTab = await getCurrentTabId(currentPane);
+
+  const listOutput = await $`wezterm cli list`.text();
+  const lines = listOutput.trim().split("\n");
+
+  // ヘッダー行を表示
+  console.log(lines[0]);
+
+  // 同じタブ内のpaneをフィルタして表示
+  for (let i = 1; i < lines.length; i++) {
+    const columns = lines[i].trim().split(/\s+/);
+    if (columns[1] === currentTab) {
+      console.log(lines[i]);
+    }
+  }
+}
+
+// read コマンド: 指定したpaneのテキストを取得
+async function readPane(targetPane: string, additionalArgs: string[]) {
+  const { currentPane } = getCurrentPaneAndTab();
+  const currentTab = await getCurrentTabId(currentPane);
+
+  // wezterm cli listの出力から対象paneのタブIDを取得
+  const listOutput = await $`wezterm cli list`.text();
+  const lines = listOutput.trim().split("\n");
+
+  let targetTab: string | null = null;
+  for (let i = 1; i < lines.length; i++) {
+    const columns = lines[i].trim().split(/\s+/);
+    if (columns[2] === targetPane) {
+      targetTab = columns[1];
+      break;
+    }
+  }
+
+  if (!targetTab) {
+    console.error(`Error: Pane ${targetPane} not found`);
+    process.exit(1);
+  }
+
+  if (targetTab !== currentTab) {
+    console.error(
+      `Error: Pane ${targetPane} is not in the same tab (current: ${currentTab}, target: ${targetTab})`
+    );
+    process.exit(1);
+  }
+
+  // テキストを取得
+  const result = await $`wezterm cli get-text --pane-id ${targetPane} ${additionalArgs}`.text();
+  console.log(result);
+}
+
+// メイン処理
+const args = process.argv.slice(2);
+
+if (args.length === 0) {
+  showHelp();
+  process.exit(1);
+}
+
+const command = args[0];
+
+switch (command) {
+  case "list":
+    await listPanes();
+    break;
+
+  case "read":
+    if (args.length < 2) {
+      console.error("Error: read command requires a pane-id");
+      showHelp();
+      process.exit(1);
+    }
+    const targetPane = args[1];
+    const readOptions = args.slice(2);
+    await readPane(targetPane, readOptions);
+    break;
+
+  case "help":
+  case "--help":
+  case "-h":
+    showHelp();
+    break;
+
+  default:
+    console.error(`Error: Unknown command '${command}'`);
+    showHelp();
+    process.exit(1);
+}

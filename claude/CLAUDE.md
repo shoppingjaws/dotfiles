@@ -15,6 +15,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working across 
 - Use bin/kustomize for Kustomize operations (allowed command)
 - Use kzdiff to see changes of kustomize build result (see @docs/kzdiff.md )
 
+### Wezterm Pane Operations
+
+Use `wezterm-peer` command to interact with panes in the same tab:
+- `wezterm-peer list` - List all panes in the current tab
+- `wezterm-peer read <pane-id> [--start-line N] [--end-line N]` - Read text from a specific pane in the same tab
+
+Note: This command only accesses panes within the same tab for security reasons.
+
 ## Task Guidelines
 
 - When creating scripts for temporary file operations or repetitive tasks, it is recommended to write them in Deno.

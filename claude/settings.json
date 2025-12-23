@@ -82,7 +82,8 @@
       "Bash(git push:*)",
       "Edit(.claude/CLAUDE.md)",
       "Edit(mise.toml)",
-      "Edit(.container-use/*)"
+      "Edit(.container-use/*)",
+      "Bash(wezterm-peer:*)"
     ],
     "deny": [
       "Bash(find:*)",
