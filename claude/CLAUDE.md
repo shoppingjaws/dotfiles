@@ -17,9 +17,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working across 
 
 ### Wezterm Pane Operations
 
-Use `wezterm-peer` command to interact with panes in the same tab:
-- `wezterm-peer list` - List all panes in the current tab
-- `wezterm-peer read <pane-id> [--start-line N] [--end-line N]` - Read text from a specific pane in the same tab
+Use `peer` command to interact with panes in the same tab:
+- `peer list` - List all panes in the current tab
+- `peer read <pane-id> [--start-line N] [--end-line N]` - Read text from a specific pane in the same tab
 
 Note: This command only accesses panes within the same tab for security reasons.
 Note: This command requires unsandbox environment to execute.
