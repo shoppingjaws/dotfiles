@@ -1,8 +1,8 @@
 #!/usr/bin/env bun
 // 同じタブ内のpaneを操作するスクリプト
 // Usage:
-//   wezterm-peer list                          - 同じタブ内の全paneを一覧表示
-//   wezterm-peer read <pane-id> [options]      - 指定したpaneのテキストを取得
+//   peer list                          - 同じタブ内の全paneを一覧表示
+//   peer read <pane-id> [options]      - 指定したpaneのテキストを取得
 //     Options: --start-line N, --end-line N
 
 import { $ } from "bun";
@@ -10,14 +10,14 @@ import { $ } from "bun";
 // ヘルプメッセージ
 function showHelp() {
   console.log(`Usage:
-  wezterm-peer list                          - 同じタブ内の全paneを一覧表示
-  wezterm-peer read <pane-id> [options]      - 指定したpaneのテキストを取得
+  peer list                          - 同じタブ内の全paneを一覧表示
+  peer read <pane-id> [options]      - 指定したpaneのテキストを取得
     Options: --start-line N, --end-line N
 
 Examples:
-  wezterm-peer list
-  wezterm-peer read 123
-  wezterm-peer read 123 --start-line 0 --end-line 5`);
+  peer list
+  peer read 123
+  peer read 123 --start-line 0 --end-line 5`);
 }
 
 // 現在のpane IDとタブIDを取得
