@@ -4,7 +4,7 @@
     "autoAllowBashIfSandboxed": true,
     "unsandboxedCommands": [
       "Bash(safe_find:*)",
-      "Bash(wezterm-peer:*)",
+      "Bash(peer:*)",
       "Bash(terraform plan:*)",
       "Bash(terraform state list:*)",
       "Bash(terraform version:*)",
@@ -62,7 +62,7 @@
       "Edit(.claude/CLAUDE.md)",
       "Edit(mise.toml)",
       "Edit(.container-use/*)",
-      "Bash(wezterm-peer:*)"
+      "Bash(peer:*)"
     ],
     "deny": [
       "Bash(find:*)",
