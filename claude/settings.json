@@ -34,7 +34,9 @@
       "Bash(gh pr view:*)",
       "Bash(gh run view:*)",
       "Bash(gh run list:*)",
-      "Bash(gh run watch:*)"
+      "Bash(gh run watch:*)",
+      "Bash(gh issue list:*)",
+      "Bash(gh issue view:*)"
     ]
   },
   "env": {
@@ -44,7 +46,6 @@
   "permissions": {
     "allow": [
       "Bash(safe_find:*)",
-      "Bash(peer:*)",
       "Bash(terraform plan:*)",
       "Bash(terraform state list:*)",
       "Bash(terraform version:*)",
@@ -80,8 +81,7 @@
       "Bash(git push:*)",
       "Edit(.claude/CLAUDE.md)",
       "Edit(mise.toml)",
-      "Edit(.container-use/*)",
-      "Bash(peer:*)"
+      "Edit(.container-use/*)"
     ],
     "deny": [
       "Bash(find:*)",

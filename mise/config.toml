@@ -14,6 +14,7 @@ neovim = "0.11.3"
 lua = "5.1"
 ripgrep = "14.1.1"
 fd = "10.2.0"
+"aqua:opentofu/opentofu" = "1.11.2"
 "npm:@anthropic-ai/claude-code" = "2.0.73"
 "aqua:aws/session-manager-plugin"="1.2.707.0"
 "aqua:direnv/direnv" = "v2.37.1"
@@ -50,4 +51,7 @@ biome = "2.3.7"
 [tasks.mise_setup]
 description = "Setup mise tools"
 run = "bun run karabiner/karabiner.ts"
+
+[tool_alias]
+tf = "tofu"
 
