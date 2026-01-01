@@ -15,6 +15,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working across 
 - Use bin/kustomize for Kustomize operations (allowed command)
 - Use kzdiff to see changes of kustomize build result (see @docs/kzdiff.md )
 
+### Network Errors
+
+ネットワークエラーに遭遇した場合、sandboxモードで実行されている可能性があります。unsandboxモードで再実行することを推奨します。
+
 ### Wezterm Pane Operations
 
 Use `peer` command to interact with panes in the same tab:
