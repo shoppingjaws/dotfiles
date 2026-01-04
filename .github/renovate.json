@@ -5,6 +5,7 @@
     "at any time"
   ],
   "automerge": true,
+  "platformAutomerge": false,
   "automergeSchedule": [
     "at any time"
   ],
